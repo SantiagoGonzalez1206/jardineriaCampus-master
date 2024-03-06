@@ -2,6 +2,8 @@ from tabulate import tabulate
 import modules.getEmpleado as empleado
 import modules.getClientes as clientes
 import modules.getOficina as oficina
+import modules.getPedido as pedido
+import modules.getPago as pago
 
    #Todos los nombres de los empleados
 #print(tabulate(empleado.getAllEmpleadosName()), tablefmt="grid")
@@ -38,6 +40,14 @@ import modules.getOficina as oficina
    #5 punto
 #print(tabulate(empleado.getEmpleadosPuesto()))
 
+   #6 punto
+#print(tabulate(clientes.getNombreClientesEspaña()))
+
+   #7 punto
+#print(tabulate(pedido.getEstadoPedido()))
+
+   #8 punto
+print(tabulate(pago.getFechaPago()))
 
    #EJERCICIOS PRACTICA
 

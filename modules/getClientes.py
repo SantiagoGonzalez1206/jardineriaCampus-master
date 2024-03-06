@@ -1,11 +1,12 @@
 import storage.cliente as cli
 
-def getAllEmpleadosName():
-    empleadoNames = list()
+def getNombreClientesEspaña():
+    NombreClientesEspaña = []
     for val in cli.clientes:
-        codigoNames = dict({
-            "codigo_empleado": val.get('codigo_empleado'),
-            "nombre_cliente": val.get('nombre')
-        })
-        empleadoNames.append(codigoNames)
-    return empleadoNames
+        if val.get('pais') == "Spain" :
+            NombreClientesEspaña.append(
+                {
+                    "nombre_cliente": val.get("nombre_cliente")
+                }
+            )  
+    return NombreClientesEspaña
