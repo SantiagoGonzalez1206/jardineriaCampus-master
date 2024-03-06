@@ -1,5 +1,6 @@
 from tabulate import tabulate 
 import modules.getEmpleado as empleado
+import modules.getClientes as clientes
 
    #Todos los nombres de los empleados
 #print(tabulate(empleado.getAllEmpleadosName()), tablefmt="grid")
@@ -16,10 +17,14 @@ import modules.getEmpleado as empleado
    #Filtrar la informacion por el codigo de jefe correspondiente
 #print(tabulate(empleado.getAllEmpleadosCode(15)))
 
+    #
+#print(tabulate(empleado.getOneEmpleadoExtension("Representante Ventas")))
 
-   
+#PUNTOS PAGINA
+
    #4 punto
-#print(tabulate(empleado.getAllJefesCode("7")))
+#print(tabulate(empleado.getAllJefesCode()))
 
    #5 punto
-#print(tabulate(empleado.getOneEmpleadoExtension("Representante Ventas")))
+#print(tabulate(empleado.getEmpleadosPuesto()))
+

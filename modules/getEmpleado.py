@@ -62,10 +62,10 @@ def getOneEmpleadoExtension(puesto, nombre = None):
     return empleadosZone
 
 
-def getAllJefesCode(codigo_jefe, nombre = None):
+def getAllJefesCode():
     nombreApellidoEmail = []
     for val in emp.empleado:
-        if val.get('codigo_jefe') == codigo_jefe :
+        if val.get('codigo_jefe') == None :
             nombreApellidoEmail.append(
                 {
                     "nombre": val.get("nombre"),
@@ -74,3 +74,16 @@ def getAllJefesCode(codigo_jefe, nombre = None):
                     "jefe": val.get("codigo_jefe")
                 }
             )  
+    return nombreApellidoEmail
+def getEmpleadosPuesto():
+    nombreApellidoPuesto = []
+    for val in emp.empleado:
+        if val.get('puesto') != "Representante Ventas" :
+            nombreApellidoPuesto.append(
+                {
+                    "nombre": val.get("nombre"),
+                    "apellidos": f'{val.get("apellido1")} {val.get("apellido2")}',
+                    "puesto": val.get("puesto")
+                }
+            )  
+    return nombreApellidoPuesto
