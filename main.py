@@ -2,9 +2,9 @@ from tabulate import tabulate
 import modules.getEmpleado as empleado
 
    #Todos los nombres de los empleados
-#print(tabulate(empleado.getAllEmpleadosName()))
+#print(tabulate(empleado.getAllEmpleadosName()), tablefmt="grid")
 
-#Filtrar la informacion por el codigo de jefe correspondiente
+   #Filtrar la informacion por el codigo de jefe correspondiente
 #print(tabulate(empleado.getAllEmpleadosCode(15)))
 
    #La informacion del nombre de la persona 
@@ -16,6 +16,10 @@ import modules.getEmpleado as empleado
    #Filtrar la informacion por el codigo de jefe correspondiente
 #print(tabulate(empleado.getAllEmpleadosCode(15)))
 
-   #Filtrar la informacion DESCARTANDO al puesto que se indique
-#print(tabulate(empleado.getOneEmpleadoExtension("Director Oficina")))
 
+   
+   #4 punto
+#print(tabulate(empleado.getAllJefesCode("7")))
+
+   #5 punto
+#print(tabulate(empleado.getOneEmpleadoExtension("Representante Ventas")))
