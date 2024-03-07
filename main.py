@@ -30,7 +30,7 @@ import modules.getPago as pago
 #print(tabulate(pedido.getEstadoPedido(), tablefmt="grid"))
 
    #8 punto
-#print(tabulate(pago.getFechaPago(), tablefmt="grid"))
+#print(pago.getFechaPago())
 
    #9 punto
 #print(tabulate(pedido.getAllPedidosEntregadosAtrasados(), tablefmt="grid"))
@@ -41,10 +41,13 @@ import modules.getPago as pago
    #11 punto
 #print(tabulate(pedido.getRechazos2009(), tablefmt="grid"))
 
+   #12 punto
+print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
+
    #EJERCICIOS PRACTICA
 
    #Todos los nombres de los empleados
-#print(tabulate(empleado.getAllEmpleadosName()), tablefmt="grid")
+#print(tabulate(empleado.getAllEmpleadosName(), tablefmt="grid"))
 
    #Filtrar la informacion por el codigo de jefe correspondiente
 #print(tabulate(empleado.getAllEmpleadosCode(15)))

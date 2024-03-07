@@ -81,3 +81,27 @@ def getRechazos2009():
         if val.get("estado") == "Rechazado" and fechaRechazo.startswith("2009"):
             pedidosRechazados2009.append(val)
     return pedidosRechazados2009
+
+
+def getEntregadosEneri():
+    pedidosEntregadoEnero = []
+    for val in ped.pedido:
+        mesEntrega = val.get("fecha_entrega")
+        if val.get("estado") == "Entregado" and mesEntrega.startswith("01"):
+            pedidosEntregadoEnero.append(val)
+    return pedidosEntregadoEnero
+
+def getEntregadosEnero():
+    pedidosEntregadoEnero = []
+    for val in ped.pedido:
+        fecha_entrega = val.get("fecha_entrega")
+        estado = val.get("estado")
+
+        # Parsear la fecha de entrega a datetime
+        fecha_entrega = datetime.strptime(fecha_entrega, "%Y-%m-%d")
+
+        # Verificar si el pedido fue entregado en enero
+        if estado == "Entregado" and fecha_entrega.month == 1:
+            pedidosEntregadoEnero.append(val)
+
+    return pedidosEntregadoEnero
