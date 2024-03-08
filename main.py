@@ -4,6 +4,7 @@ import modules.getClientes as clientes
 import modules.getOficina as oficina
 import modules.getPedido as pedido
 import modules.getPago as pago
+import sys
 
 
 #PUNTOS PAGINA
@@ -42,7 +43,7 @@ import modules.getPago as pago
 #print(tabulate(pedido.getRechazos2009(), tablefmt="grid"))
 
    #12 punto
-print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
+#print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
 
    #EJERCICIOS PRACTICA
 
@@ -50,7 +51,7 @@ print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
 #print(tabulate(empleado.getAllEmpleadosName(), tablefmt="grid"))
 
    #Filtrar la informacion por el codigo de jefe correspondiente
-#print(tabulate(empleado.getAllEmpleadosCode(15)))
+#print(tabulate(empleado.getAllEmpleadoelif option == 2:sCode(15)))
 
    #La informacion del nombre de la persona 
 #print(tabulate(empleado.getOneEmpleadoNombreApellidos("Ruben")))
@@ -63,4 +64,40 @@ print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
 
    #Muestra toda la información de las personas que no son representante de ventas
 #print(tabulate(empleado.getOneEmpleadoExtension("Representante Ventas")))
+
+
+          
+#for nombre, objeto in sys.modules.items():
+#    if nombre.startswith("modules"):
+#        modulo = getattr(objeto, "__name__", None)
+#        if ((modulo != "modules")):
+#          file = modulo.split("get")[-1]
+#          print(file)
+    
+if __name__ == "__main__":
+    print("""
+        
+    __  ___                    ____       _            _             __
+   /  |/  /__  ____  __  __   / __ \_____(_)___  _____(_)___  ____ _/ /
+  / /|_/ / _ \/ __ \/ / / /  / /_/ / ___/ / __ \/ ___/ / __ \/ __ `/ / 
+ / /  / /  __/ / / / /_/ /  / ____/ /  / / / / / /__/ / /_/ / /_/ / /  
+/_/  /_/\___/_/ /_/\__,_/  /_/   /_/  /_/_/ /_/\___/_/ .___/\__,_/_/   
+                                                    /_/                
+        
+
+        1. Cliente
+        2. Oficina
+        3. Empleado
+        4. Pedidos
+
+""")
+option = int(input("\nSeleccione una de las opciones: "))
+if option == 1:
+    clientes.menu()
+elif option == 2:
+    oficina.menu()
+elif option == 3:
+    empleado.menu()
+elif option == 4:
+    pedido.menu()  
 
