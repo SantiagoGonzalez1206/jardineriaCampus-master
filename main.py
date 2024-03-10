@@ -1,3 +1,4 @@
+import os
 from tabulate import tabulate 
 import modules.getEmpleado as empleado
 import modules.getClientes as clientes
@@ -45,13 +46,19 @@ import sys
    #12 punto
 #print(tabulate(pedido.getEntregadosEnero(), tablefmt="grid"))
 
+   #13 punto
+#print(tabulate(pago.getPagoPaypal(), tablefmt="grid"))
+
+   #14 punto 
+#print(tabulate(pago.getFormaDePago))
+
    #EJERCICIOS PRACTICA
 
    #Todos los nombres de los empleados
 #print(tabulate(empleado.getAllEmpleadosName(), tablefmt="grid"))
 
    #Filtrar la informacion por el codigo de jefe correspondiente
-#print(tabulate(empleado.getAllEmpleadoelif option == 2:sCode(15)))
+#print(tabulate(empleado.getAllEmpleado(15)))
 
    #La informacion del nombre de la persona 
 #print(tabulate(empleado.getOneEmpleadoNombreApellidos("Ruben")))
@@ -67,15 +74,16 @@ import sys
 
 
           
-#for nombre, objeto in sys.modules.items():
-#    if nombre.startswith("modules"):
-#        modulo = getattr(objeto, "__name__", None)
-#        if ((modulo != "modules")):
-#          file = modulo.split("get")[-1]
-#          print(file)
+# for nombre, objeto in sys.modules.items():
+#     if nombre.startswith("modules"):
+#         modulo = getattr(objeto, "__name__", None)
+#         if ((modulo != "modules")):
+#           file = modulo.split("get")[-1]
+#           print(file)
     
-if __name__ == "__main__":
-    print("""
+if(__name__ == "__main__"):
+         os.system("clear")
+         print("""
         
     __  ___                    ____       _            _             __
    /  |/  /__  ____  __  __   / __ \_____(_)___  _____(_)___  ____ _/ /
@@ -89,15 +97,21 @@ if __name__ == "__main__":
         2. Oficina
         3. Empleado
         4. Pedidos
+        5. Pago
 
 """)
-option = int(input("\nSeleccione una de las opciones: "))
-if option == 1:
-    clientes.menu()
-elif option == 2:
-    oficina.menu()
-elif option == 3:
-    empleado.menu()
-elif option == 4:
-    pedido.menu()  
-
+try:
+   option = int(input("\nSeleccione una de las opciones: "))
+except ValueError:
+   print("Ingrese una opcion correcta!")
+else:
+   if(option == 1):
+      clientes.menu()
+   elif(option == 2):
+      oficina.menu()
+   elif(option == 3):
+      empleado.menu()
+   elif(option == 4):
+      pedido.menu()  
+   elif(option == 5):
+      pago.menu()  

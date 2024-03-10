@@ -1,5 +1,6 @@
 import storage.pedido as ped
 from datetime import datetime
+from tabulate import tabulate 
 
 def getEstadoPedido():
     estadosPedido = set()
@@ -92,16 +93,42 @@ def getEntregadosEneri():
     return pedidosEntregadoEnero
 
 def getEntregadosEnero():
-    pedidosEntregadoEnero = []
+    PedidosDeEnero = list()
     for val in ped.pedido:
-        fecha_entrega = val.get("fecha_entrega")
-        estado = val.get("estado")
+        if (val.get("estado") == "Entregado" and val.get("fecha_entrega") != None):
+            FechaEntregada = "/".join(val.get("fecha_entrega").split("-")[::-1])
+            start = datetime.strptime(FechaEntregada, "%d/%m/%Y")
+            if val.get("estado") == "Entregado" and start.month == 1:
+                PedidosDeEnero.append(val)
+    return PedidosDeEnero
 
-        # Parsear la fecha de entrega a datetime
-        fecha_entrega = datetime.strptime(fecha_entrega, "%Y-%m-%d")
+def menu():
+    print("""
 
-        # Verificar si el pedido fue entregado en enero
-        if estado == "Entregado" and fecha_entrega.month == 1:
-            pedidosEntregadoEnero.append(val)
+    ____                        __                   __        __                             ___     __          
+   / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___  _____   ____  ___  ____/ (_)___/ /___  _____
+  / /_/ / _ \/ __ \/ __ \/ ___/ __/ _ \/ ___/  / __  / _ \   / / __ \/ ___/  / __ \/ _ \/ __  / / __  / __ \/ ___/
+ / _, _/  __/ /_/ / /_/ / /  / /_/  __(__  )  / /_/ /  __/  / / /_/ (__  )  / /_/ /  __/ /_/ / / /_/ / /_/ (__  ) 
+/_/ |_|\___/ .___/\____/_/   \__/\___/____/   \__,_/\___/  /_/\____/____/  / .___/\___/\__,_/_/\__,_/\____/____/  
+          /_/                                                             /_/                                     
 
-    return pedidosEntregadoEnero
+                1. Los distintos estados por los que pasa un pedido
+                2. Codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos NO entregados a tiempo
+                3. Codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos con entrega 2 dias antes de la fecha esperada
+                4. Todos los pedidos rechazados en 2009
+                5. Pedidos entregados en Enero de cualquier año
+""")
+    
+    opcion= int(input("\nSeleccione una de las opciones: "))
+    if(opcion == 1):
+        print(tabulate(getEstadoPedido(), headers="keys", tablefmt="github"))
+    elif(opcion == 2):
+        print(tabulate(getAllPedidosEntregadosAtrasados(), headers="keys", tablefmt="github"))
+    elif(opcion == 3):
+        print(tabulate(getPedidosDosDias(), headers="keys", tablefmt="github"))
+    elif(opcion == 4):
+        print(tabulate(getRechazos2009(), headers="keys", tablefmt="github"))    
+    elif(opcion == 5):
+        print(tabulate(getEntregadosEnero(), headers="keys", tablefmt="github"))
+    else:
+        print("elija una opcion valida")

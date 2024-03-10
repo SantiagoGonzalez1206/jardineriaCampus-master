@@ -1,4 +1,5 @@
 import storage.empleado as emp
+from tabulate import tabulate 
 
 def getAllEmpleadosName():
     empleadoNames = list()
@@ -103,3 +104,30 @@ def getEmpleadosPuesto():
                 }
             )  
     return nombreApellidoPuesto
+
+
+def menu():
+    print("""
+
+    ____                        __                   __        __                                   __               __          
+   / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___  _____   ___  ____ ___  ____  / /__  ____ _____/ /___  _____
+  / /_/ / _ \/ __ \/ __ \/ ___/ __/ _ \/ ___/  / __  / _ \   / / __ \/ ___/  / _ \/ __ `__ \/ __ \/ / _ \/ __ `/ __  / __ \/ ___/
+ / _, _/  __/ /_/ / /_/ / /  / /_/  __(__  )  / /_/ /  __/  / / /_/ (__  )  /  __/ / / / / / /_/ / /  __/ /_/ / /_/ / /_/ (__  ) 
+/_/ |_|\___/ .___/\____/_/   \__/\___/____/   \__,_/\___/  /_/\____/____/   \___/_/ /_/ /_/ .___/_/\___/\__,_/\__,_/\____/____/  
+          /_/                                                                            /_/                                     
+
+
+                                 1. Nombre, apellido y email de los empleados con codigo de jefe 7
+                                 2. Puesto, nombre, apellido y email del jefe de la empresa
+                                 3. Nombre, apellidos y puesto de aquellos que no son representantes de ventas
+""")
+    
+    opcion= int(input("\nSeleccione una de las opciones: "))
+    if(opcion == 1):
+        print(tabulate(getNombreApellidoEmailJefe(), headers="keys", tablefmt="github"))
+    elif(opcion == 2):
+        print(tabulate(getAllJefesCode(), headers="keys", tablefmt="github"))
+    elif(opcion == 3):
+        print(tabulate(getEmpleadosPuesto(), headers="keys", tablefmt="github"))
+    else:
+        print("elija una opcion valida")

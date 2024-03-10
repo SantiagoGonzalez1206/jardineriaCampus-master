@@ -23,11 +23,12 @@ def menu():
           /_/                                                                                                   
 
 
-          1.Obtener todos los clientes de España
+                                 1.Obtener todos los clientes de España
 """)
     
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
-        
+        print(tabulate(getNombreClientesEspaña(), headers="keys", tablefmt="github"))
+    else:
+        print("elija una opcion valida")
     
-menu()
