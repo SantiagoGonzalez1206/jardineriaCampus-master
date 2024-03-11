@@ -24,7 +24,8 @@ def getCiudadTelefonoEspaña():
     return ciudadTelefonoEspaña
 
 def menu():
-    print("""
+    while True:
+        print("""
 
     ____                        __                   __        __               _____      _            
    / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___ _   ____  / __(_)____(_)___  ____ _
@@ -36,12 +37,15 @@ def menu():
 
                                  1. Codigo de oficina y ciudad donde hay oficinas
                                  2. Ciudad y telefono de las oficinas de España
+                                 3. Salir
 """)
     
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(getCodigoOfiCiudadName(), headers="keys", tablefmt="github"))
-    elif(opcion == 2):
-        print(tabulate(getCiudadTelefonoEspaña(), headers="keys", tablefmt="github"))
-    else:
-        print("elija una opcion valida")
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(getCodigoOfiCiudadName(), headers="keys", tablefmt="github"))
+        elif(opcion == 2):
+            print(tabulate(getCiudadTelefonoEspaña(), headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            break
+        else:
+            print("elija una opcion valida")

@@ -14,6 +14,7 @@ def getNombreClientesEspaña():
 
 
 def menu():
+  while True:  
     print("""
     ____                        __                   __        __                   ___            __           
    / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___  _____   _____/ (_)__  ____  / /____  _____
@@ -24,11 +25,14 @@ def menu():
 
 
                                  1.Obtener todos los clientes de España
+                                 2.Salir
 """)
     
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
         print(tabulate(getNombreClientesEspaña(), headers="keys", tablefmt="github"))
+    elif(opcion == 2):
+       break
     else:
         print("elija una opcion valida")
     

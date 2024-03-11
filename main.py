@@ -82,8 +82,8 @@ import sys
 #           print(file)
     
 if(__name__ == "__main__"):
-         os.system("clear")
-         print("""
+   while True:
+      print("""
         
     __  ___                    ____       _            _             __
    /  |/  /__  ____  __  __   / __ \_____(_)___  _____(_)___  ____ _/ /
@@ -98,20 +98,21 @@ if(__name__ == "__main__"):
         3. Empleado
         4. Pedidos
         5. Pago
+        6. Salir 
 
-""")
-try:
-   option = int(input("\nSeleccione una de las opciones: "))
-except ValueError:
-   print("Ingrese una opcion correcta!")
-else:
-   if(option == 1):
-      clientes.menu()
-   elif(option == 2):
-      oficina.menu()
-   elif(option == 3):
-      empleado.menu()
-   elif(option == 4):
-      pedido.menu()  
-   elif(option == 5):
-      pago.menu()  
+               """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         clientes.menu()
+      elif(option == 2):
+         oficina.menu()
+      elif(option == 3):
+         empleado.menu()
+      elif(option == 4):
+         pedido.menu()  
+      elif(option == 5):
+         pago.menu()  
+      elif(option == 6):
+         break

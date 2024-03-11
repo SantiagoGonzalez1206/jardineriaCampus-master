@@ -107,7 +107,8 @@ def getEmpleadosPuesto():
 
 
 def menu():
-    print("""
+    while True:
+        print("""
 
     ____                        __                   __        __                                   __               __          
    / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___  _____   ___  ____ ___  ____  / /__  ____ _____/ /___  _____
@@ -120,14 +121,17 @@ def menu():
                                  1. Nombre, apellido y email de los empleados con codigo de jefe 7
                                  2. Puesto, nombre, apellido y email del jefe de la empresa
                                  3. Nombre, apellidos y puesto de aquellos que no son representantes de ventas
+                                 4. Salir
 """)
     
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(getNombreApellidoEmailJefe(), headers="keys", tablefmt="github"))
-    elif(opcion == 2):
-        print(tabulate(getAllJefesCode(), headers="keys", tablefmt="github"))
-    elif(opcion == 3):
-        print(tabulate(getEmpleadosPuesto(), headers="keys", tablefmt="github"))
-    else:
-        print("elija una opcion valida")
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(getNombreApellidoEmailJefe(), headers="keys", tablefmt="github"))
+        elif(opcion == 2):
+            print(tabulate(getAllJefesCode(), headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            print(tabulate(getEmpleadosPuesto(), headers="keys", tablefmt="github"))
+        elif(opcion == 4):
+            break
+        else:
+            print("elija una opcion valida")
