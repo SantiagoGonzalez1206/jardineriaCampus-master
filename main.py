@@ -53,6 +53,9 @@ import sys
    #14 punto 
 #print(tabulate(pago.getFormaDePago))
 
+   #16 punto
+# print(tabulate(clientes.getClienteCiudadMadrid1130()))
+
    #EJERCICIOS PRACTICA
 
    #Todos los nombres de los empleados
