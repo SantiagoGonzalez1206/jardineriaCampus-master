@@ -115,5 +115,5 @@ def menu():
     elif(opcion == 6):
        break
     else:
-        print("elija una opcion valida")
+        print("elija una opcion valida ")
     

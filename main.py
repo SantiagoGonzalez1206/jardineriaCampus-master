@@ -124,4 +124,4 @@ if(__name__ == "__main__"):
       elif(option == 7):
          break
       else:
-         print("elija una opcion valida ")
+         print("elija una opcion valida")
