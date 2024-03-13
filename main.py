@@ -6,6 +6,7 @@ import modules.getOficina as oficina
 import modules.getPedido as pedido
 import modules.getPago as pago
 import modules.getProducto as producto
+import modules.getGamas as gama_producto
 import sys
 
 
