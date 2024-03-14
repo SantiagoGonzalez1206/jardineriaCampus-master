@@ -5,7 +5,8 @@ import modules.getClientes as clientes
 import modules.getOficina as oficina
 import modules.getPedido as pedido
 import modules.getPago as pago
-import modules.getProducto as producto
+import modules.getProducto as Repproducto
+import modules.postProducto as CRUDproducto
 import modules.getGamas as gama_producto
 import sys
 
@@ -86,8 +87,43 @@ import sys
 #           file = modulo.split("get")[-1]
 #           print(file)
     
+
+def menuProducto():
+   while True:
+      os.system("clear")
+      print("""
+            
+    ____  _                            _     __               __                          __     
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /  ____ ___  ___  ____  __/_/_    
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /  / __ `__ \/ _ \/ __ \/ / / /    
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /  / / / / / /  __/ / / / /_/ /     
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/   \__,_/_/  /_/ /_/ /_/\___/_/ /_/\__,_/      
+   / __ \_________  ____/ /_  _______/ /_____  _____                                             
+  / /_/ / ___/ __ \/ __  / / / / ___/ __/ __ \/ ___/                                             
+ / ____/ /  / /_/ / /_/ / /_/ / /__/ /_/ /_/ (__  )                                              
+/_/   /_/   \____/\__,_/\__,_/\___/\__/\____/____/                                               
+
+
+            1. Reportes de los productos
+            2. Guardar, Actualizar y Eliminar productos
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Repproducto.menu()
+      elif(option == 2):
+         CRUDproducto.menu()
+      elif(option == 0):
+         break
+
+
+
 if(__name__ == "__main__"):
    while True:
+      os.system("clear")
       print("""
         
 
@@ -123,7 +159,7 @@ ___  ___                  ______     _            _             _
       elif(option == 5):
          pago.menu()  
       elif(option == 6):
-         producto.menu()
+         menuProducto()
       elif(option == 7):
          break
       else:

@@ -1,57 +1,60 @@
-import json
-from tabulate import tabulate 
+import os
+from tabulate import tabulate
 import requests
-import modules.getGamas as GeGam
 
-# Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales
-# y que tienen más de 100 unidades en stock. EL Listado deberá estar ordenado por su precio de venta, # mostrando en primer lugar los de mayor precio.
-
+# Devuelve un listado con todos los productos que pertenecen a la gama Ornamentales 
+# y que tienen más de 100 unidades en stock. El listado deberá estar ordenado por su precio de venta, 
+# mostrando en primer lugar los de mayor precio.
 def getAllData():
+    # json-server storage/producto.json -b 5503
     peticion = requests.get("http://172.16.100.142:5503")
-    data= peticion.json()
+    data = peticion.json()
     return data
 
-def getAllStockPriceGama(gama, stock):
+def getAllStocksPriceGama(gama, stock):
     condiciones = []
-    for val in json:
+    for val in getAllData():
         if(val.get("gama") == gama and val.get("cantidad_en_stock") >= stock):
             condiciones.append(val)
     def price(val):
-        return val.get("precio_venta")
+        return val.get("precio_venta")    
     condiciones.sort(key=price, reverse=True)
     for i, val in enumerate(condiciones):
         condiciones[i] = {
-            "codigo": val.get("codigo_producto"),
-            "venta": val.get("precio_venta"), "nombre": val.get("nombre"),
-            "gama": val.get("gama"),
-            "dimensiones": val.get("dimensiones"),
-            "proveedor": val.get("proveedor"),
-            "descripcion": f'{val.get("descripcion")[:5]}...' if condiciones[i].get("descripcion") else None,
-            "stock": val.get("cantidad_en_stock"),
-            "base": val.get("precio_proveedor")
+                "codigo": val.get("codigo_producto"),
+                "venta": val.get("precio_venta"),
+                "nombre": val.get("nombre"),
+                "gama": val.get("gama"),
+                "dimensiones": val.get("dimensiones"),
+                "proveedor": val.get("proveedor"),
+                "descripcion": f'{val.get("descripcion")[:5]}...' if condiciones[i].get("descripcion") else None,
+                "stock": val.get("cantidad_en_stock"),
+                "base": val.get("precio_proveedor")
             }
     return condiciones
 
-
 def menu():
-  while True:
-    print("""
+    while True:
+        os.system("clear")
+        print("""  
+    ____                        __                   __                             __           __            
+   / __ \___  ____  ____  _____/ /____  _____   ____/ /__     ____  _________  ____/ /_  _______/ /_____  _____
+  / /_/ / _ \/ __ \/ __ \/ ___/ __/ _ \/ ___/  / __  / _ \   / __ \/ ___/ __ \/ __  / / / / ___/ __/ __ \/ ___/
+ / _, _/  __/ /_/ / /_/ / /  / /_/  __(__  )  / /_/ /  __/  / /_/ / /  / /_/ / /_/ / /_/ / /__/ /_/ /_/ (__  ) 
+/_/ |_|\___/ .___/\____/_/   \__/\___/____/   \__,_/\___/  / .___/_/   \____/\__,_/\__,_/\___/\__/\____/____/  
+          /_/                                             /_/                                                  
 
-    ____                        __              __        __                                   __           __            
-   / __ \___  ____  ____  _____/ /____     ____/ /__     / /___  _____   ____  _________  ____/ /_  _______/ /_____  _____
-  / /_/ / _ \/ __ \/ __ \/ ___/ __/ _ \   / __  / _ \   / / __ \/ ___/  / __ \/ ___/ __ \/ __  / / / / ___/ __/ __ \/ ___/
- / _, _/  __/ /_/ / /_/ / /  / /_/  __/  / /_/ /  __/  / / /_/ (__  )  / /_/ / /  / /_/ / /_/ / /_/ / /__/ /_/ /_/ (__  ) 
-/_/ |_|\___/ .___/\____/_/   \__/\___/   \__,_/\___/  /_/\____/____/  / .___/_/   \____/\__,_/\__,_/\___/\__/\____/____/  
-          /_/                                                        /_/                                                  
-
-                                 1. 1
-                                 2. Salir
-""")
-    
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(getAllStockPriceGama("gama", "stock"), headers="keys", tablefmt="github"))
-    elif(opcion == 2):
-        break
-    else:
-        print("elija una opcion valida")
+            1. Obtener todos los productos de una categoría ordenando sus precios de venta, también que su cantidad de inventario sea superior
+            0. Atras
+          
+          """)        
+        opcion = int(input("\nSelecione una de las opciones: "))
+        if(opcion == 1):
+            gama = input("Ingrese la gama que deseas filtrar: ")
+            stock = int(input("Ingrese las unidades que quiera mostrar: "))
+            print(tabulate(getAllStocksPriceGama(gama, stock), headers="keys", tablefmt="github"))
+            input("Escriba alguna tecla para continuar... ")
+        elif(opcion == 0):
+            break
+        else:
+            print("elija una opcion valida")
