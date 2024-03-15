@@ -1,14 +1,28 @@
 import os
 from tabulate import tabulate 
-import modules.getEmpleado as empleado
-import modules.getClientes as clientes
-import modules.getOficina as oficina
-import modules.getPedido as pedido
-import modules.getPago as pago
+import sys
+
+import modules.getEmpleado as Repempleado
+import modules.postEmpleado as CRUDempleado
+
+import modules.getClientes as Repclientes
+import modules.postClientes as CRUDclientes
+
+import modules.getOficina as Repoficina
+import modules.postOficina as CRUDoficina
+
+import modules.getPedido as Reppedido
+import modules.postPedido as CRUDpedido
+
+import modules.getPago as Reppago
+import modules.postPago as CRUDpago
+
 import modules.getProducto as Repproducto
 import modules.postProducto as CRUDproducto
+
 import modules.getGamas as gama_producto
-import sys
+
+
 
 
 #PUNTOS PAGINA
@@ -79,14 +93,84 @@ import sys
 #print(tabulate(empleado.getOneEmpleadoExtension("Representante Ventas")))
 
 
-          
-# for nombre, objeto in sys.modules.items():
-#     if nombre.startswith("modules"):
-#         modulo = getattr(objeto, "__name__", None)
-#         if ((modulo != "modules")):
-#           file = modulo.split("get")[-1]
-#           print(file)
-    
+
+def menuOficina():
+   while True:
+      os.system("clear")
+      print("""
+            
+
+
+    ____  _                            _     __               __     
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /     
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /      
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /       
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/   \__,_/_/        
+                           __     ____  _____      _                 
+   ____ ___  ___  ____  __/_/_   / __ \/ __(_)____(_)___  ____ ______
+  / __ `__ \/ _ \/ __ \/ / / /  / / / / /_/ / ___/ / __ \/ __ `/ ___/
+ / / / / / /  __/ / / / /_/ /  / /_/ / __/ / /__/ / / / / /_/ (__  ) 
+/_/ /_/ /_/\___/_/ /_/\__,_/   \____/_/ /_/\___/_/_/ /_/\__,_/____/  
+                                                                     
+            
+   
+                                                                        
+
+
+            1. Reportes de las oficinas
+            2. Guardar, Actualizar y Eliminar oficinas
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Repoficina.menu()
+      elif(option == 2):
+         CRUDoficina.menu()
+      elif(option == 0):
+         break
+
+
+
+
+def menuCliente():
+   while True:
+      os.system("clear")
+      print("""
+            
+
+    ____  _                            _     __                    __   
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___  _____   ____ _/ /   
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \/ ___/  / __ `/ /    
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ (__  )  / /_/ / /     
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/____/   \__,_/_/      
+                           __     _________            __               
+   ____ ___  ___  ____  __/_/_   / ____/ (_)__  ____  / /____  _____    
+  / __ `__ \/ _ \/ __ \/ / / /  / /   / / / _ \/ __ \/ __/ _ \/ ___/    
+ / / / / / /  __/ / / / /_/ /  / /___/ / /  __/ / / / /_/  __(__  )     
+/_/ /_/ /_/\___/_/ /_/\__,_/   \____/_/_/\___/_/ /_/\__/\___/____/      
+                                                                        
+
+
+            1. Reportes de los clientes
+            2. Guardar, Actualizar y Eliminar clientes
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Repclientes.menu()
+      elif(option == 2):
+         CRUDclientes.menu()
+      elif(option == 0):
+         break
+
+
+
 
 def menuProducto():
    while True:
@@ -120,12 +204,124 @@ def menuProducto():
          break
 
 
+def menuEmpleado():
+   while True:
+      os.system("clear")
+      print("""
+
+            
+    ____  _                            _     __               __                     
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /                     
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /                      
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /                       
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/   \__,_/_/                        
+                           __     ______                __               __          
+   ____ ___  ___  ____  __/_/_   / ____/___ ___  ____  / /__  ____ _____/ /___  _____
+  / __ `__ \/ _ \/ __ \/ / / /  / __/ / __ `__ \/ __ \/ / _ \/ __ `/ __  / __ \/ ___/
+ / / / / / /  __/ / / / /_/ /  / /___/ / / / / / /_/ / /  __/ /_/ / /_/ / /_/ (__  ) 
+/_/ /_/ /_/\___/_/ /_/\__,_/  /_____/_/ /_/ /_/ .___/_/\___/\__,_/\__,_/\____/____/  
+                                             /_/                                     
+                                          
+
+
+            1. Reportes de los empleados
+            2. Guardar, Actualizar y Eliminar empleados
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Repempleado.menu()
+      elif(option == 2):
+         CRUDempleado.menu()
+      elif(option == 0):
+         break
+
+
+def menuPago():
+   while True:
+      os.system("clear")
+      print("""
+            
+
+
+    ____  _                            _     __               __   
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /   
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /    
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /     
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/   \__,_/_/      
+   ____ ___  ___  ____  __/_/_   / __ \____ _____ _____            
+  / __ `__ \/ _ \/ __ \/ / / /  / /_/ / __ `/ __ `/ __ \           
+ / / / / / /  __/ / / / /_/ /  / ____/ /_/ / /_/ / /_/ /           
+/_/ /_/ /_/\___/_/ /_/\__,_/  /_/    \__,_/\__, /\____/            
+                                          /____/                   
+   
+
+
+            1. Reportes de los clientes
+            2. Guardar, Actualizar y Eliminar clientes
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Reppago.menu()
+      elif(option == 2):
+         CRUDpago.menu()
+      elif(option == 0):
+         break
+
+
+
+def menuPedido():
+   while True:
+      os.system("clear")
+      print("""
+            
+
+
+    ____  _                            _     __               __   
+   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /   
+  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /    
+ / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /     
+/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/__ \__,_/_/      
+   ____ ___  ___  ____  __/_/_   / __ \___  ____/ (_)___/ /___     
+  / __ `__ \/ _ \/ __ \/ / / /  / /_/ / _ \/ __  / / __  / __ \    
+ / / / / / /  __/ / / / /_/ /  / ____/  __/ /_/ / / /_/ / /_/ /    
+/_/ /_/ /_/\___/_/ /_/\__,_/  /_/    \___/\__,_/_/\__,_/\____/     
+                                                                   
+
+
+
+            1. Reportes de los pedidos
+            2. Guardar, Actualizar y Eliminar pedidos
+            0. Regresar al menu principal                                                               
+
+      """)
+
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
+         Reppedido.menu()
+      elif(option == 2):
+         CRUDpedido.menu()
+      elif(option == 0):
+         break
+
+
+
+
+
 
 if(__name__ == "__main__"):
    while True:
       os.system("clear")
       print("""
-        
+
 
 ___  ___                  ______     _            _             _ 
 |  \/  |                  | ___ \   (_)          (_)           | |
@@ -136,31 +332,36 @@ ___  ___                  ______     _            _             _
                                                    | |            
                                                    |_|            
 
-        1. Cliente
-        2. Oficina
-        3. Empleado
-        4. Pedidos
+        1. Oficina
+        2. Cliente
+        3. Producto
+        4. Empleado
         5. Pago
-        6. Producto 
-        7. Salir 
+        6. Pedido
+        0. Salir 
 
                """)
 
       option = int(input("\nSeleccione una de las opciones: "))
 
       if(option == 1):
-         clientes.menu()
+         menuOficina()
       elif(option == 2):
-         oficina.menu()
+         menuCliente()       
       elif(option == 3):
-         empleado.menu()
-      elif(option == 4):
-         pedido.menu()  
-      elif(option == 5):
-         pago.menu()  
-      elif(option == 6):
          menuProducto()
-      elif(option == 7):
+      elif(option == 4):
+         menuEmpleado()         
+      elif(option == 5):
+         menuPago() 
+      elif(option == 6):
+         menuPedido()
+      elif(option == 0):
          break
       else:
          print("elija una opcion valida")
+
+
+        # https://patorjk.com/software/taag/#p=display&h=2&v=2&f=Slant&t=Menu%20Principal
+         
+      #json-server storage/oficina.json -b 5501 & json-server storage/cliente.json -b 5502 & json-server storage/producto.json -b 5503 & json-server storage/empleado.json -b 5504 & json-server storage/pago.json -b 5505 & json-server storage/pedido.json -b 5506

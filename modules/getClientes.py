@@ -1,11 +1,34 @@
-import storage.cliente as cli
-import storage.empleado as emp
-import storage.pago as pag
 from tabulate import tabulate 
+import requests
+
+
+
+
+def getAllCliente():
+    # json-server storage/cliente.json -b 5502
+    peticion = requests.get("http://172.16.104.15:5502")
+    data = peticion.json()
+    return data
+
+def getAllEmpleado():
+    # json-server storage/empleado.json -b 5504
+    peticion = requests.get("http://172.16.104.15:5504")
+    data = peticion.json()
+    return data
+
+def getAllPago():
+    # json-server storage/pago.json -b 5505
+    peticion = requests.get("http://172.16.104.15:5505")
+    data = peticion.json()
+    return data
+
+
+
+
 
 def getNombreClientesEspaña():
     NombreClientesEspaña = []
-    for val in cli.clientes:
+    for val in getAllCliente():
         if val.get('pais') == "Spain" :
             NombreClientesEspaña.append(
                 {
@@ -16,7 +39,7 @@ def getNombreClientesEspaña():
 
 def getClienteCiudadMadrid1130():
     ClienteCiudadDeMadrid = []
-    for val in cli.clientes:
+    for val in getAllCliente():
         if val.get("ciudad") == "Madrid":
             if val.get("codigo_empleado_rep_ventas") in [11, 30]:
                 ClienteCiudadDeMadrid.append(
@@ -31,8 +54,8 @@ def getClienteCiudadMadrid1130():
 
 def getClienteRepresentanteVenta():
     clienteRepre = []
-    for val1 in cli.clientes:
-        for val2 in emp.empleado:
+    for val1 in getAllCliente():
+        for val2 in getAllEmpleado():
             if val1.get("codigo_empleado_rep_ventas") == val2.get("codigo_empleado") and val2.get("puesto") == "Representante Ventas":
                 clienteRepre.append(
                     {
@@ -45,9 +68,9 @@ def getClienteRepresentanteVenta():
 
 def getclientePagos():
     clientePagos =[]
-    for val1 in pag.pago:
-        for val2 in cli.clientes:
-            for val3 in emp.empleado:
+    for val1 in getAllPago():
+        for val2 in getAllCliente():
+            for val3 in getAllEmpleado():
                 if val2.get("codigo_cliente") == val1.get("codigo_cliente") and val2.get("codigo_empleado_rep_ventas") == val3.get("codigo_empleado"): 
 
                     clientePagos.append(
@@ -62,14 +85,14 @@ def getclientePagos():
 
 def getClienteNoPagos():
     ClienteNoPagos = []
-    for val in cli.clientes:
+    for val in getAllCliente():
         pagos = False
-        for val2 in pag.pago:
+        for val2 in getAllPago():
                 if val.get('codigo_cliente')== val2.get("codigo_cliente"):
                     pagos = True
                     break
         if not pagos:
-            for val2 in emp.empleado:
+            for val2 in getAllEmpleado():
                 if val.get('codigo_empleado_rep_ventas') == val2.get("codigo_empleado"):
                     if val2.get('puesto') == "Representante Ventas":
                         ClienteNoPagos.append({

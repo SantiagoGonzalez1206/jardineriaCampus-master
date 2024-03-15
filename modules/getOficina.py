@@ -1,9 +1,16 @@
-import storage.oficina as ofi
 from tabulate import tabulate 
+import requests
+
+def getAllOficina():
+    # json-server storage/oficina.json -b 5501
+    peticion = requests.get("http://172.16.104.15:5501")
+    data = peticion.json()
+    return data
+
 
 def getCodigoOfiCiudadName():
     CodigoOfiCiudad = list()
-    for val in ofi.oficina:
+    for val in getAllOficina():
         codigoNames = dict({
             "codigo_oficina": val.get('codigo_oficina'),
             "ciudad": val.get('ciudad')
@@ -13,7 +20,7 @@ def getCodigoOfiCiudadName():
 
 def getCiudadTelefonoEspaña():
     ciudadTelefonoEspaña = []
-    for val in ofi.oficina:
+    for val in getAllOficina():
         if val.get('pais') == "España" :
             ciudadTelefonoEspaña.append(
                 {

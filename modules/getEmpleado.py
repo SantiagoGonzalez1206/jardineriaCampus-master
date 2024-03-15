@@ -1,9 +1,18 @@
-import storage.empleado as emp
-from tabulate import tabulate 
+from tabulate import tabulate
+import requests
+
+
+def getAllEmpleado():
+    # json-server storage/empleado.json -b 5504
+    peticion = requests.get("http://172.16.104.15:5504")
+    data = peticion.json()
+    return data
+
+
 
 def getAllEmpleadosName():
     empleadoNames = list()
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         codigoNames = dict({
             "codigo_empleado": val.get('codigo_empleado'),
             "nombre_cliente": val.get('nombre')
@@ -13,7 +22,7 @@ def getAllEmpleadosName():
 
 def getAllEmpleadosCode(codigo_jefe, nombre = None):
     empleadosZone = list()
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('codigo_jefe') == codigo_jefe :
             if (val.get('nombre') == nombre) or val.get('nombre') == None: 
                 empleadosZone.append(val)
@@ -26,7 +35,7 @@ def getAllEmpleadosCode(codigo_jefe, nombre = None):
 
 def getOneEmpleadoNombreApellidos(nombre, apellido1 = None, apellido2 = None):
     empleadosZone = list()
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('nombre') == nombre :
             if (val.get('apellido1') == apellido1) or val.get('region') == None: 
                 if (val.get('apellido2') == apellido2) or val.get('ciudad') == None:
@@ -37,7 +46,7 @@ def getOneEmpleadoNombreApellidos(nombre, apellido1 = None, apellido2 = None):
 
 def getOneEmpleadoCodeNombre(codigo_empleado, nombre = None):
     empleadosZone = list()
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('codigo_empleado') == codigo_empleado :
             if (val.get('nombre') == nombre) or val.get('nombre') == None: 
                 empleadosZone.append(val)
@@ -51,7 +60,7 @@ def getOneEmpleadoCodeNombre(codigo_empleado, nombre = None):
 
 def getOneEmpleadoExtension(puesto, nombre = None):
     empleadosZone = list()
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('puesto') == puesto :
             if (val.get('nombre') == nombre) or val.get('nombre') == None: 
                 empleadosZone.append(val)
@@ -66,7 +75,7 @@ def getOneEmpleadoExtension(puesto, nombre = None):
 
 def getNombreApellidoEmailJefe():
     NombreApellidoEmailJefe = []
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('codigo_jefe') == 7 :
             NombreApellidoEmailJefe.append(
                 {
@@ -79,7 +88,7 @@ def getNombreApellidoEmailJefe():
 
 def getAllJefesCode():
     nombreApellidoEmail = []
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('codigo_jefe') == None :
             nombreApellidoEmail.append(
                 {
@@ -94,7 +103,7 @@ def getAllJefesCode():
 
 def getEmpleadosPuesto():
     nombreApellidoPuesto = []
-    for val in emp.empleado:
+    for val in getAllEmpleado():
         if val.get('puesto') != "Representante Ventas" :
             nombreApellidoPuesto.append(
                 {

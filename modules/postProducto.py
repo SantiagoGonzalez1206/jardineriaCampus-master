@@ -1,6 +1,5 @@
 import json
 import requests
-import modules.getGamas as GeGam
 import os
 from tabulate import tabulate
 
@@ -17,8 +16,9 @@ def postProducto():
             "precio_proveedor": int(input("Ingrese el precio de proveedor del producto: "))
         }
     
+   
     #json-server storage/producto.json -b 5503
-    peticion = requests.post("http://172.16.100.142:5503", data = json.dumps(producto, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://172.16.104.15:5503", data = json.dumps(producto, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]

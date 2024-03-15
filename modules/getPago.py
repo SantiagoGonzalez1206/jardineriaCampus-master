@@ -1,9 +1,16 @@
-import storage.pago as pag
+import requests
 from tabulate import tabulate 
+
+def getAllPago():
+    # json-server storage/pago.json -b 5505
+    peticion = requests.get("http://172.16.104.15:5505")
+    data = peticion.json()
+    return data
+
 
 def getFechaPago():
     clientesPagos= set()
-    for val in pag.pago:
+    for val in getAllPago():
         fechaPagos = val.get("fecha_pago")
         if fechaPagos.startswith("2008"):
             clientesPagos.add(val.get("codigo_cliente"))
@@ -13,7 +20,7 @@ def getFechaPago():
 
 def getPagoPaypal():
     pagoFecha = []
-    for val in pag.pago:
+    for val in getAllPago():
         if("2008") in val.get("fecha_pago") and val.get("forma_pago") == ("PayPal"):
             pagoFecha.append({
                     "codigo_de_cliente": val.get("codigo_cliente"),
@@ -27,7 +34,7 @@ def getPagoPaypal():
 
 def getFormaDePago():
     Paypal = set ()
-    for val in pag.pago:
+    for val in getAllPago():
         FormaPago = val.get("forma_pago")
         if FormaPago not in Paypal:
             Paypal.add (FormaPago)

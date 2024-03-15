@@ -1,10 +1,18 @@
-import storage.pedido as ped
 from tabulate import tabulate 
 from datetime import datetime, timedelta
+import requests
+
+
+def getAllPedido():
+    # json-server storage/pedido.json -b 5506
+    peticion = requests.get("http://172.16.104.15:5506")
+    data = peticion.json()
+    return data
+
 
 def getEstadoPedido():
     estadosPedido = set()
-    for val in ped.pedido:
+    for val in getAllPedido():
        estado_pedido = val.get('estado')
        estadosPedido.add(estado_pedido)
     return estadosPedido
@@ -12,7 +20,7 @@ def getEstadoPedido():
 
 def getAllPedidosEntregadosAtrasados():
     pedidosEntregados=[] 
-    for val in ped.pedido:
+    for val in getAllPedido():
         if val.get("estado") == "Entregado" and val.get("fecha_entrega")is None:
             val["fecha_entrega"] = val.get("fecha_esperada")
         if val.get("estado") == "Entregado":
@@ -33,7 +41,7 @@ def getAllPedidosEntregadosAtrasados():
 
 def getPedidosDosDias():
     pedidosEntregados=[] 
-    for val in ped.pedido:
+    for val in getAllPedido():
         if val.get("estado") == "Entregado" and val.get("fecha_entrega")is None:
             val["fecha_entrega"] = val.get("fecha_esperada")
         if val.get("estado") == "Entregado":
@@ -55,7 +63,7 @@ def getPedidosDosDias():
 
 def getPedidosDosDias():
     pedidosEntregados=[] 
-    for pedido in ped.pedido:
+    for pedido in getAllPedido():
         
         fechaEntregaInicial=(pedido.get("fecha_entrega"))
         fechaEsperadaInicial=(pedido.get("fecha_esperada"))
@@ -83,7 +91,7 @@ def getPedidosDosDias():
 
 def getRechazos2009():
     pedidosRechazados2009 = []
-    for val in ped.pedido:
+    for val in getAllPedido():
         fechaRechazo = val.get("fecha_esperada")
         if val.get("estado") == "Rechazado" and fechaRechazo.startswith("2009"):
             pedidosRechazados2009.append(val)
@@ -92,7 +100,7 @@ def getRechazos2009():
 
 def getEntregadosEneri():
     pedidosEntregadoEnero = []
-    for val in ped.pedido:
+    for val in getAllPedido():
         mesEntrega = val.get("fecha_entrega")
         if val.get("estado") == "Entregado" and mesEntrega.startswith("01"):
             pedidosEntregadoEnero.append(val)
@@ -100,7 +108,7 @@ def getEntregadosEneri():
 
 def getEntregadosEnero():
     PedidosDeEnero = list()
-    for val in ped.pedido:
+    for val in getAllPedido():
         if (val.get("estado") == "Entregado" and val.get("fecha_entrega") != None):
             FechaEntregada = "/".join(val.get("fecha_entrega").split("-")[::-1])
             start = datetime.strptime(FechaEntregada, "%d/%m/%Y")
@@ -124,7 +132,7 @@ def menu():
         3. Codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos con entrega 2 dias antes
         4. Todos los pedidos rechazados en 2009
         5. Pedidos entregados en Enero de cualquier año
-        6. Salir
+        0. Salir
 """)
     
         opcion= int(input("\nSeleccione una de las opciones: "))
@@ -138,7 +146,7 @@ def menu():
             print(tabulate(getRechazos2009(), headers="keys", tablefmt="github"))    
         elif(opcion == 5):
             print(tabulate(getEntregadosEnero(), headers="keys", tablefmt="github"))
-        elif(opcion == 6):
+        elif(opcion == 0):
             break
         else:
             print("elija una opcion valida")
