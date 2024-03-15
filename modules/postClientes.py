@@ -22,7 +22,7 @@ def postCliente():
         }
      
     #json-server storage/cliente.json -b 5502
-    peticion = requests.post("http://172.16.104.15:5502", data = json.dumps(cliente, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://172.16.100.142:5502", data = json.dumps(cliente, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
@@ -51,7 +51,7 @@ def menu():
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
         print(tabulate(postCliente(), headers="keys", tablefmt="github"))
-        input("Presione alguna tecla para continuar... ")
+        input("Presione Enter para continuar... ")
 
     elif(opcion==0):
        break

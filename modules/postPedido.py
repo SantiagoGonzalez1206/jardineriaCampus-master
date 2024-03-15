@@ -16,7 +16,7 @@ def postPedido():
     
    
     #json-server storage/pedido.json -b 5506
-    peticion = requests.post("http://172.16.104.15:5506", data = json.dumps(pedido, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://172.16.100.142:5506", data = json.dumps(pedido, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
@@ -47,7 +47,7 @@ def menu():
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
         print(tabulate(postPedido(), headers="keys", tablefmt="github"))
-        input("Presione alguna tecla para continuar... ")
+        input("Presione Enter para continuar... ")
 
     elif(opcion==0):
        break

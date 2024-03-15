@@ -7,7 +7,7 @@ import requests
 # mostrando en primer lugar los de mayor precio.
 def getAllData():
     # json-server storage/producto.json -b 5503
-    peticion = requests.get("http://172.16.104.15:5503")
+    peticion = requests.get("http://172.16.100.142:5503")
     data = peticion.json()
     return data
 
@@ -48,13 +48,17 @@ def menu():
             0. Atras
           
           """)        
-        opcion = int(input("\nSelecione una de las opciones: "))
-        if(opcion == 1):
-            gama = input("Ingrese la gama que deseas filtrar: ")
-            stock = int(input("Ingrese las unidades que quiera mostrar: "))
-            print(tabulate(getAllStocksPriceGama(gama, stock), headers="keys", tablefmt="github"))
-            input("Escriba alguna tecla para continuar... ")
-        elif(opcion == 0):
-            break
-        else:
-            print("elija una opcion valida")
+        try:
+            opcion = int(input("\nSelecione una de las opciones: "))
+            if(opcion == 1):
+                gama = input("Ingrese la gama que deseas filtrar: ")
+                stock = int(input("Ingrese las unidades que quiera mostrar: "))
+                print(tabulate(getAllStocksPriceGama(gama, stock), headers="keys", tablefmt="github"))
+                input("Escriba alguna tecla para continuar... ")
+            elif(opcion == 0):
+                break
+            else:
+                print("elija una opcion valida")
+
+        except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 1")

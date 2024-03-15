@@ -6,19 +6,19 @@ import requests
 
 def getAllCliente():
     # json-server storage/cliente.json -b 5502
-    peticion = requests.get("http://172.16.104.15:5502")
+    peticion = requests.get("http://172.16.100.142:5502")
     data = peticion.json()
     return data
 
 def getAllEmpleado():
     # json-server storage/empleado.json -b 5504
-    peticion = requests.get("http://172.16.104.15:5504")
+    peticion = requests.get("http://172.16.100.142:5504")
     data = peticion.json()
     return data
 
 def getAllPago():
     # json-server storage/pago.json -b 5505
-    peticion = requests.get("http://172.16.104.15:5505")
+    peticion = requests.get("http://172.16.100.142:5505")
     data = peticion.json()
     return data
 

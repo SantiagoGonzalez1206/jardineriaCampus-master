@@ -1,6 +1,6 @@
 import os
 from tabulate import tabulate 
-import sys
+import time
 
 import modules.getEmpleado as Repempleado
 import modules.postEmpleado as CRUDempleado
@@ -122,16 +122,21 @@ def menuOficina():
             0. Regresar al menu principal                                                               
 
       """)
+      try: 
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      option = int(input("\nSeleccione una de las opciones: "))
-
-      if(option == 1):
-         Repoficina.menu()
-      elif(option == 2):
-         CRUDoficina.menu()
-      elif(option == 0):
-         break
-
+         if(option == 1):
+            Repoficina.menu()
+         elif(option == 2):
+            CRUDoficina.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion valida del 0 al 2")
+         time.sleep(3)
 
 
 
@@ -160,15 +165,21 @@ def menuCliente():
 
       """)
 
-      option = int(input("\nSeleccione una de las opciones: "))
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      if(option == 1):
-         Repclientes.menu()
-      elif(option == 2):
-         CRUDclientes.menu()
-      elif(option == 0):
-         break
-
+         if(option == 1):
+            Repclientes.menu()
+         elif(option == 2):
+            CRUDclientes.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 2")
+         time.sleep(3)
 
 
 
@@ -193,16 +204,21 @@ def menuProducto():
             0. Regresar al menu principal                                                               
 
       """)
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      option = int(input("\nSeleccione una de las opciones: "))
-
-      if(option == 1):
-         Repproducto.menu()
-      elif(option == 2):
-         CRUDproducto.menu()
-      elif(option == 0):
-         break
-
+         if(option == 1):
+            Repproducto.menu()
+         elif(option == 2):
+            CRUDproducto.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
+      except ValueError: 
+         (print("Caracteres incorrectos, elija una opcion del 0 al 2"))
+         time.sleep(3)
 
 def menuEmpleado():
    while True:
@@ -229,15 +245,21 @@ def menuEmpleado():
             0. Regresar al menu principal                                                               
 
       """)
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      option = int(input("\nSeleccione una de las opciones: "))
-
-      if(option == 1):
-         Repempleado.menu()
-      elif(option == 2):
-         CRUDempleado.menu()
-      elif(option == 0):
-         break
+         if(option == 1):
+            Repempleado.menu()
+         elif(option == 2):
+            CRUDempleado.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 2")
+         time.sleep(3)
 
 
 def menuPago():
@@ -266,14 +288,21 @@ def menuPago():
 
       """)
 
-      option = int(input("\nSeleccione una de las opciones: "))
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      if(option == 1):
-         Reppago.menu()
-      elif(option == 2):
-         CRUDpago.menu()
-      elif(option == 0):
-         break
+         if(option == 1):
+            Reppago.menu()
+         elif(option == 2):
+            CRUDpago.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 2")
+         time.sleep(3)
 
 
 
@@ -303,23 +332,29 @@ def menuPedido():
 
       """)
 
-      option = int(input("\nSeleccione una de las opciones: "))
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
 
-      if(option == 1):
-         Reppedido.menu()
-      elif(option == 2):
-         CRUDpedido.menu()
-      elif(option == 0):
-         break
+         if(option == 1):
+            Reppedido.menu()
+         elif(option == 2):
+            CRUDpedido.menu()
+         elif(option == 0):
+            break
+         else:
+            print("Elija una opcion correcta del 0 al 2")
+            time.sleep(3)
 
-
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 2")
+         time.sleep(3)
 
 
 
 
 if(__name__ == "__main__"):
    while True:
-      os.system("clear")
+      #os.system("clear")
       print("""
 
 
@@ -341,26 +376,28 @@ ___  ___                  ______     _            _             _
         0. Salir 
 
                """)
-
-      option = int(input("\nSeleccione una de las opciones: "))
-
-      if(option == 1):
-         menuOficina()
-      elif(option == 2):
-         menuCliente()       
-      elif(option == 3):
-         menuProducto()
-      elif(option == 4):
-         menuEmpleado()         
-      elif(option == 5):
-         menuPago() 
-      elif(option == 6):
-         menuPedido()
-      elif(option == 0):
-         break
-      else:
-         print("elija una opcion valida")
-
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
+         if(option == 1):
+            menuOficina()
+         elif(option == 2):
+            menuCliente()       
+         elif(option == 3):
+            menuProducto()
+         elif(option == 4):
+            menuEmpleado()         
+         elif(option == 5):
+            menuPago() 
+         elif(option == 6):
+            menuPedido()
+         elif(option == 0):
+            break
+         else:
+            print("Elija algun número disponible del 0 al 6 ")
+            time.sleep(3)
+      except ValueError: 
+         print("Caracteres incorrectos, elija una opcion del 0 al 6")
+         time.sleep(3)
 
         # https://patorjk.com/software/taag/#p=display&h=2&v=2&f=Slant&t=Menu%20Principal
          

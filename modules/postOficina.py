@@ -16,8 +16,8 @@ def postOficina():
         }
     
    
-    #json-server storage/producto.json -b 5503
-    peticion = requests.post("http://172.16.104.15:5503", data = json.dumps(oficina, indent =4).encode("UTF-8"))
+    #json-server storage/oficina.json -b 5501
+    peticion = requests.post("http://172.16.100.142:5501", data = json.dumps(oficina, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
@@ -48,7 +48,7 @@ def menu():
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
         print(tabulate(postOficina(), headers="keys", tablefmt="github"))
-        input("Presione alguna tecla para continuar... ")
+        input("Presione Enter para continuar... ")
 
     elif(opcion==0):
        break
