@@ -2,6 +2,7 @@ import json
 import requests
 import os
 from tabulate import tabulate
+import modules.getProducto as getpro
 
 def postProducto():
     producto = {
@@ -14,14 +15,46 @@ def postProducto():
             "cantidad_en_stock": int(input("Ingrese la cantidad del producto: ")),
             "precio_venta": int(input("Ingrese el precio de venta del producto: ")),
             "precio_proveedor": int(input("Ingrese el precio de proveedor del producto: "))
-        }
+       }
     
-   
+if(__name__ == "__main__"):
+        with open("storage/producto.json", "r") as f:
+            fichero = f.read()
+            data = json.loads(fichero)
+            for i, val in enumerate(data):
+                data[i]["id"] = (i+1)
+            data=json.dumps(data, indent=4).encode("utf-8")
+            with open("storage/producto.json", "wb+") as f1:
+                f1.write(data)
+                f1.close()
+
+
+def deleteproducto(id):
+    data = getpro.getProductoCodigos(id)
+    if(len(data)):
+        peticion= requests.delete(f"http://172.16.104.15:5003/producto/{id}")
+        if(peticion.status_code == 204):
+            data.append({"message": "Producto eliminado correctamente"})
+            return{
+                "body" : data,
+                "status": peticion.status_code
+            }
+        
+        else:
+            return{
+                "body": [{
+                    "mesagge": "producto no encontrado",
+                    "id": id
+                }],
+                "status": 400
+            }   
+
+
     #json-server storage/producto.json -b 5503
-    peticion = requests.post("http://172.16.100.142:5503", data = json.dumps(producto, indent =4).encode("UTF-8"))
-    res=peticion.json()
-    res["mensaje"] = "Producto Guardado"
-    return [res]
+#    peticion = requests.post("http://172.16.100.142:5503", data = json.dumps(producto, indent =4).encode("UTF-8"))
+#    res=peticion.json()
+#    res["mensaje"] = "Producto Guardado"
+#    return [res]
 
 def menu():
   while True:
@@ -49,6 +82,10 @@ def menu():
     if(opcion == 1):
         print(tabulate(postProducto(), headers="keys", tablefmt="github"))
         input("Presione Enter para continuar... ")
+
+    elif(opcion == 2):
+        idProducto = input(("Ingrese el id del producto que deseas eliminar: "))
+        print(tabulate(deleteproducto(idProducto)["body"], headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break

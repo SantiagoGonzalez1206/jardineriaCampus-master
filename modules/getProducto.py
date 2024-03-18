@@ -11,6 +11,12 @@ def getAllData():
     data = peticion.json()
     return data
 
+
+def getProductoCodigos(codigo):
+    peticion = requests.get(f"http://172.16.100.142:5503/producto/{codigo}")
+    return[peticion.json()] if peticion.ok else []
+
+
 def getAllStocksPriceGama(gama, stock):
     condiciones = []
     for val in getAllData():

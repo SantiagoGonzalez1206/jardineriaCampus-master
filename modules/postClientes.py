@@ -25,7 +25,7 @@ import modules.getClientes as getcli
 #        }
 
 
-def agregarDatosClientes():
+def agregarDatosDeClientes():
     Clientes={}
     while True:
         try:
@@ -77,10 +77,10 @@ def agregarDatosClientes():
                 
 
 
-            # expresion regular que tenga en cuenta la escritura de un numero de 9 digitos
+            # expresion regular que tenga en cuenta la escritura de un numero de 10 digitos
             if not Clientes.get("telefono"):
                 telefono=input("Ingresa el teléfono del cliente(000000000): ")
-                if(re.match(r'^\d{9}$',telefono)is not None):
+                if(re.match(r'^\d{10}$',telefono)is not None):
                     Data=getcli.getTelFromTelclient(telefono)
                     if(Data):
                         print(tabulate(Data, headers="keys",tablefmt="grid"))
@@ -230,6 +230,39 @@ def agregarDatosClientes():
     return [res]
 
 
+if(__name__ == "__main__"):
+        with open("storage/cliente.json", "r") as f:
+            fichero = f.read()
+            data = json.loads(fichero)
+            for i, val in enumerate(data):
+                data[i]["id"] = (i+1)
+            data=json.dumps(data, indent=4).encode("utf-8")
+            with open("storage/cliente.json", "wb+") as f1:
+                f1.write(data)
+                f1.close()
+
+def deletecliente(id):
+    data = getcli.getClienteCodigos(id)
+    if(len(data)):
+        peticion= requests.delete(f"http://172.16.104.15:5002/cliente/{id}")
+        if(peticion.status_code == 204):
+            data.append({"message": "cliente eliminado correctamente"})
+            return{
+                "body" : data,
+                "status": peticion.status_code
+            }
+        
+        else:
+            return{
+                "body": [{
+                    "mesagge": "cliente no encontrado",
+                    "id": id
+                }],
+                "status": 400
+            }
+
+#    return [res]
+
 
 
 def menu():
@@ -250,13 +283,18 @@ def menu():
 
 
                                  1. Guardar un nuevo cliente
+                                 2. Eliminar algun cliente
                                  0. Salir
 """)
 
     opcion= int(input("\nSeleccione una de las opciones: "))
     if(opcion == 1):
-        print(tabulate(agregarDatosClientes(), headers="keys", tablefmt="github"))
+        print(tabulate(agregarDatosDeClientes(), headers="keys", tablefmt="github"))
         input("Presione alguna tecla para continuar... ")
+
+    elif(opcion == 2):
+        idCliente = input(("Ingrese el id del cliente que deseas eliminar: "))
+        print(tabulate(deletecliente(idCliente)["body"], headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break
