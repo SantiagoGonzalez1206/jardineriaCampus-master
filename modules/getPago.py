@@ -3,7 +3,7 @@ from tabulate import tabulate
 
 def getAllPago():
     # json-server storage/pago.json -b 5505
-    peticion = requests.get("http://172.16.100.142:5505")
+    peticion = requests.get("http://172.16.104.15:5005")
     data = peticion.json()
     return data
 

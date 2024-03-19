@@ -6,25 +6,25 @@ import requests
 
 def getAllCliente():
     # json-server storage/cliente.json -b 5502
-    peticion = requests.get("http://172.16.100.142:5502/cliente")
+    peticion = requests.get("http://172.16.104.15:5002/cliente")
     data = peticion.json()
     return data
 
 def getAllEmpleado():
     # json-server storage/empleado.json -b 5504
-    peticion = requests.get("http://172.16.100.142:5504")
+    peticion = requests.get("http://172.16.104.15:5004")
     data = peticion.json()
     return data
 
 def getAllPago():
     # json-server storage/pago.json -b 5505
-    peticion = requests.get("http://172.16.100.142:5505")
+    peticion = requests.get("http://172.16.104.15:5005")
     data = peticion.json()
     return data
 
 
 def getClienteCodigos(codigo):
-    peticion = requests.get(f"http://172.16.100.142:5502/cliente/{codigo}")
+    peticion = requests.get(f"http://172.16.104.15:5002/cliente/{codigo}")
     return[peticion.json()] if peticion.ok else []
 
 

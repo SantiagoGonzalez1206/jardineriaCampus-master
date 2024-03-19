@@ -47,7 +47,7 @@ def agregarDatosDeClientes():
 
 
 
-        
+            # expresion regular que tenga en cuenta la escritura de palabras para parrafos
 
             if not Clientes.get("nombre_cliente"):
                 nombreCliente =input("Ingresa un nombre a la empresa: ")
@@ -77,10 +77,10 @@ def agregarDatosDeClientes():
                 
 
 
-            # expresion regular que tenga en cuenta la escritura de un numero de 10 digitos
+            # expresion regular que tenga en cuenta la escritura de un numero de 9 digitos
             if not Clientes.get("telefono"):
                 telefono=input("Ingresa el teléfono del cliente(000000000): ")
-                if(re.match(r'^\d{10}$',telefono)is not None):
+                if(re.match(r'^\d{9}$',telefono)is not None):
                     Data=getcli.getTelFromTelclient(telefono)
                     if(Data):
                         print(tabulate(Data, headers="keys",tablefmt="grid"))
@@ -92,10 +92,11 @@ def agregarDatosDeClientes():
 
                 else:
                     raise Exception("El dato no cumple con el estandar establecido")
-                
-
-
+       
             
+
+            # expresion regular que tenga en cuenta la escritura de un numero de 9 digitos
+
             if not Clientes.get("fax"):
                 fax=input("Ingresa el fax del cliente(000000000): ")
                 if(re.match(r'^\d{9}$',fax)is not None):
@@ -130,7 +131,6 @@ def agregarDatosDeClientes():
                 else:
                     raise Exception("El dato no cumple con el estandar establecido")
                 
-
 
 
             if not Clientes.get("linea_direccion2"):
@@ -169,10 +169,9 @@ def agregarDatosDeClientes():
                     #break #solo para el ultimo modulo sino se rompe
                 else:
                     raise Exception("El dato no cumple con el estandar establecido")
-                
 
 
-            
+
             if not Clientes.get("region"):
                 region =input("Ingresa la región del cliente: ")
                 if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',region)is not None):
@@ -205,8 +204,9 @@ def agregarDatosDeClientes():
                     #break #solo para el ultimo modulo sino se rompe
                 else:
                     raise Exception("El dato no cumple con el estandar establecido")
-                
 
+
+            # expresion regular que tenga en cuenta la escritura de un numero 
             if not Clientes.get("limite_credito"):
                 limiteCredito =input("Ingresa el límite de crédito del cliente: ")
                 if(re.match(r'^\d+$',limiteCredito)is not None):
@@ -215,7 +215,7 @@ def agregarDatosDeClientes():
                     print("El dato cumple con el estandar,OK")
                     break #solo para el ultimo modulo sino se rompe
                 else:
-                    raise Exception("El dato no cumple con el estandar establecido") 
+                    raise Exception("El dato no cumple con el estandar establecido")
 
 
 
@@ -224,10 +224,11 @@ def agregarDatosDeClientes():
    
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://172.16.104.15:5002",headers=headers, data=json.dumps(Clientes, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5001",headers=headers, data=json.dumps(Clientes, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]
+
 
 
 if(__name__ == "__main__"):

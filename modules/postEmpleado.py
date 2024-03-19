@@ -2,6 +2,7 @@ import json
 import requests
 import os
 from tabulate import tabulate
+import modules.getEmpleado as getemp
 
 def postEmpleado():
     empleado = {
@@ -23,6 +24,39 @@ def postEmpleado():
     res["mensaje"] = "Producto Guardado"
     return [res]
 
+
+if(__name__ == "__main__"):
+        with open("storage/empleado.json", "r") as f:
+            fichero = f.read()
+            data = json.loads(fichero)
+            for i, val in enumerate(data):
+                data[i]["id"] = (i+1)
+            data=json.dumps(data, indent=4).encode("utf-8")
+            with open("storage/empleado.json", "wb+") as f1:
+                f1.write(data)
+                f1.close()
+
+def deleteempleado(id):
+    data = getemp.getempenteCodigos(id)
+    if(len(data)):
+        peticion= requests.delete(f"http://172.16.104.15:5004/empleado/{id}")
+        if(peticion.status_code == 204):
+            data.append({"message": "empleado eliminado correctamente"})
+            return{
+                "body" : data,
+                "status": peticion.status_code
+            }
+        
+        else:
+            return{
+                "body": [{
+                    "mesagge": "cliente no encontrado",
+                    "id": id
+                }],
+                "status": 400
+            }
+
+
 def menu():
   while True:
     os.system("clear")
@@ -43,6 +77,7 @@ def menu():
             
 
                                  1. Guardar un nuevo empleado
+                                 2. Eliminar algun empleado
                                  0. Salir
 """)
 
@@ -50,6 +85,9 @@ def menu():
     if(opcion == 1):
         print(tabulate(postEmpleado(), headers="keys", tablefmt="github"))
         input("Presione Enter para continuar... ")
+    elif(opcion == 2):
+        idEmpleado = input(("Ingrese el id del cliente que deseas eliminar: "))
+        print(tabulate(deleteempleado(idEmpleado)["body"], headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break

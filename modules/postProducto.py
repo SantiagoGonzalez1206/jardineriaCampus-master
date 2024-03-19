@@ -75,6 +75,7 @@ def menu():
             
 
                                  1. Guardar un nuevo producto
+                                 2. Eliminar un producto
                                  0. Salir
 """)
 
