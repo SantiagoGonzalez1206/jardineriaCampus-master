@@ -3,6 +3,8 @@ import requests
 import os
 from tabulate import tabulate
 
+import modules.getPedido as getped
+
 def postPedido():
     pedido = {
         "codigo_pedido": int(input("Ingrese el codigo del pedido: ")),
@@ -16,10 +18,31 @@ def postPedido():
     
    
     #json-server storage/pedido.json -b 5506
-    peticion = requests.post("http://172.16.100.142:5506", data = json.dumps(pedido, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://154.38.171.54:5007/pedidos", data = json.dumps(pedido, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
+
+
+def deletepedido(id):
+    data = getped.getPedidoId(id)
+    if(len(data)):
+        peticion = requests.delete(f"http://154.38.171.54:5007/pedidos/{id}")
+        if(peticion.status_code == 204):
+            data.append({"message": "cliente eliminado correctamente"})
+            return {
+                "body": data, 
+                "status": peticion.status_code,
+            }
+    else:
+        return {
+            "body":[{
+                "message":"cliente no encontrado",
+                "id": id
+            }],
+            "status": 400,
+        }
+
 
 def menu():
   while True:
@@ -41,6 +64,7 @@ def menu():
 
 
                                  1. Guardar un nuevo pedido
+                                 2. Eliminar un pedido
                                  0. Salir
 """)
 
@@ -48,6 +72,10 @@ def menu():
     if(opcion == 1):
         print(tabulate(postPedido(), headers="keys", tablefmt="github"))
         input("Presione Enter para continuar... ")
+
+    elif(opcion==2):
+        idPedido = input(("Ingrese el id del cliente que deseas eliminar: "))
+        print(tabulate(deletepedido(idPedido)["body"], headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break

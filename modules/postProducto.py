@@ -2,6 +2,7 @@ import json
 import requests
 import os
 from tabulate import tabulate
+
 import modules.getProducto as getpro
 
 def postProducto():
@@ -17,22 +18,28 @@ def postProducto():
             "precio_proveedor": int(input("Ingrese el precio de proveedor del producto: "))
        }
     
-if(__name__ == "__main__"):
-        with open("storage/producto.json", "r") as f:
-            fichero = f.read()
-            data = json.loads(fichero)
-            for i, val in enumerate(data):
-                data[i]["id"] = (i+1)
-            data=json.dumps(data, indent=4).encode("utf-8")
-            with open("storage/producto.json", "wb+") as f1:
-                f1.write(data)
-                f1.close()
+    
+    
+    peticion = requests.post("http://154.38.171.54:5008/productos", data = json.dumps(producto, indent =4).encode("UTF-8"))
+    res=peticion.json()
+    res["mensaje"] = "Producto Guardado"
+    return [res]
+#if(__name__ == "__main__"):
+#        with open("storage/producto.json", "r") as f:
+#            fichero = f.read()
+#            data = json.loads(fichero)
+#            for i, val in enumerate(data):
+#                data[i]["id"] = (i+1)
+#            data=json.dumps(data, indent=4).encode("utf-8")
+#            with open("storage/producto.json", "wb+") as f1:
+#                f1.write(data)
+#                f1.close()
 
 
 def deleteproducto(id):
-    data = getpro.getProductoCodigos(id)
+    data = getpro.getProductoId(id)
     if(len(data)):
-        peticion= requests.delete(f"http://172.16.104.15:5003/producto/{id}")
+        peticion= requests.delete(f"http://154.38.171.54:5008/productos/{id}")
         if(peticion.status_code == 204):
             data.append({"message": "Producto eliminado correctamente"})
             return{

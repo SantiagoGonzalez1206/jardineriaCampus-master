@@ -3,10 +3,13 @@ import requests
 
 def getAllOficina():
     # json-server storage/oficina.json -b 5501
-    peticion = requests.get("http://172.16.104.15:5001")
+    peticion = requests.get("http://154.38.171.54:5005/oficinas")
     data = peticion.json()
     return data
 
+def getOficinaId(id):
+    peticion = requests.get(f"http://154.38.171.54:5005/oficinas/{id}")
+    return[peticion.json()] if peticion.ok else []
 
 def getCodigoOfiCiudadName():
     CodigoOfiCiudad = list()

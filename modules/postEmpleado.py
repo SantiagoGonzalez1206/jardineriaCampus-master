@@ -19,27 +19,27 @@ def postEmpleado():
    
    
      # json-server storage/empleado.json -b 5504
-    peticion = requests.post("http://172.16.100.142:5504", data = json.dumps(empleado, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://154.38.171.54:5003/empleados", data = json.dumps(empleado, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
 
 
-if(__name__ == "__main__"):
-        with open("storage/empleado.json", "r") as f:
-            fichero = f.read()
-            data = json.loads(fichero)
-            for i, val in enumerate(data):
-                data[i]["id"] = (i+1)
-            data=json.dumps(data, indent=4).encode("utf-8")
-            with open("storage/empleado.json", "wb+") as f1:
-                f1.write(data)
-                f1.close()
+#if(__name__ == "__main__"):
+#        with open("storage/empleado.json", "r") as f:
+#            fichero = f.read()
+#            data = json.loads(fichero)
+#            for i, val in enumerate(data):
+#                data[i]["id"] = (i+1)
+#            data=json.dumps(data, indent=4).encode("utf-8")
+#            with open("storage/empleado.json", "wb+") as f1:
+#                f1.write(data)
+#                f1.close()
 
 def deleteempleado(id):
-    data = getemp.getempenteCodigos(id)
+    data = getemp.getEmpleadoId(id)
     if(len(data)):
-        peticion= requests.delete(f"http://172.16.104.15:5004/empleado/{id}")
+        peticion= requests.delete(f"http://154.38.171.54:5003/empleados/{id}")
         if(peticion.status_code == 204):
             data.append({"message": "empleado eliminado correctamente"})
             return{

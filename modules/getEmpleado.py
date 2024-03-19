@@ -4,10 +4,13 @@ import requests
 
 def getAllEmpleado():
     # json-server storage/empleado.json -b 5504
-    peticion = requests.get("http://172.16.104.15:5004")
+    peticion = requests.get("http://154.38.171.54:5003/empleados")
     data = peticion.json()
     return data
 
+def getEmpleadoId(id):
+    peticion = requests.get(f"http://154.38.171.54:5003/empleados/{id}")
+    return[peticion.json()] if peticion.ok else []
 
 
 def getAllEmpleadosName():

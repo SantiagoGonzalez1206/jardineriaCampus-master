@@ -404,3 +404,13 @@ ___  ___                  ______     _            _             _
         # https://patorjk.com/software/taag/#p=display&h=2&v=2&f=Slant&t=Menu%20Principal
          
       #json-server storage/oficina.json -b 5501 & json-server storage/cliente.json -b 5502 & json-server storage/producto.json -b 5503 & json-server storage/empleado.json -b 5504 & json-server storage/pago.json -b 5505 & json-server storage/pedido.json -b 5506
+      
+      
+#cliente:  http://154.38.171.54:5001/cliente
+#detalles: http://154.38.171.54:5002/detalle_pedido
+#empleados: http://154.38.171.54:5003/empleados
+#gama?producto: http://154.38.171.54:5004/gama
+#oficina: http://154.38.171.54:5005/oficinas
+#pago: http://154.38.171.54:5006/pagos
+#pedido: http://154.38.171.54:5007/pedidos
+#producto: http://154.38.171.54:5008/productos

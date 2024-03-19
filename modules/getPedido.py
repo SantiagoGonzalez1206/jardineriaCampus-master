@@ -5,9 +5,14 @@ import requests
 
 def getAllPedido():
     # json-server storage/pedido.json -b 5506
-    peticion = requests.get("http://172.16.104.15:5006")
+    peticion = requests.get("http://154.38.171.54:5007/pedidos")
     data = peticion.json()
     return data
+
+
+def getPedidoId(id):
+    peticion = requests.get(f"http://154.38.171.54:5007/pedidos/{id}")
+    return[peticion.json()] if peticion.ok else []
 
 
 def getEstadoPedido():

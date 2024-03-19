@@ -3,6 +3,8 @@ import requests
 import os
 from tabulate import tabulate
 
+import modules.getOficina as getofi
+
 def postOficina():
     oficina = {
         "codigo_oficina": input("Ingrese el codigo de la oficina: "),
@@ -17,10 +19,31 @@ def postOficina():
     
    
     #json-server storage/oficina.json -b 5501
-    peticion = requests.post("http://172.16.100.142:5501", data = json.dumps(oficina, indent =4).encode("UTF-8"))
+    peticion = requests.post("http://154.38.171.54:5005/oficinas", data = json.dumps(oficina, indent =4).encode("UTF-8"))
     res=peticion.json()
     res["mensaje"] = "Producto Guardado"
     return [res]
+
+
+def deleteoficina(id):
+    data = getofi.getOficinaId(id)
+    if(len(data)):
+        peticion = requests.delete(f"http://154.38.171.54:5005/oficinas/{id}")
+        if(peticion.status_code == 204):
+            data.append({"message": "cliente eliminado correctamente"})
+            return {
+                "body": data, 
+                "status": peticion.status_code,
+            }
+    else:
+        return {
+            "body":[{
+                "message":"cliente no encontrado",
+                "id": id
+            }],
+            "status": 400,
+        }
+
 
 def menu():
   while True:
@@ -42,6 +65,7 @@ def menu():
 
 
                                  1. Guardar un nuevo dato de oficina
+                                 2. Eliminar un dato de oficina
                                  0. Salir
 """)
 
@@ -49,6 +73,10 @@ def menu():
     if(opcion == 1):
         print(tabulate(postOficina(), headers="keys", tablefmt="github"))
         input("Presione Enter para continuar... ")
+        
+    elif(opcion == 2):
+        idOficina = input(("Ingrese el id del cliente que deseas eliminar: "))
+        print(tabulate(deleteoficina(idOficina)["body"], headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break

@@ -5,27 +5,62 @@ import requests
 
 
 def getAllCliente():
-    # json-server storage/cliente.json -b 5502
-    peticion = requests.get("http://172.16.104.15:5002/cliente")
+    # json-server storage/cliente.json -b 5501
+    peticion = requests.get("http://154.38.171.54:5001/cliente")
     data = peticion.json()
     return data
 
 def getAllEmpleado():
     # json-server storage/empleado.json -b 5504
-    peticion = requests.get("http://172.16.104.15:5004")
+    peticion = requests.get("http://154.38.171.54:5003/empleados")
     data = peticion.json()
     return data
 
 def getAllPago():
     # json-server storage/pago.json -b 5505
-    peticion = requests.get("http://172.16.104.15:5005")
+    peticion = requests.get("http://154.38.171.54:5006/pagos")
     data = peticion.json()
     return data
 
 
-def getClienteCodigos(codigo):
-    peticion = requests.get(f"http://172.16.104.15:5002/cliente/{codigo}")
+def getClienteId(id):
+    peticion = requests.get(f"http://154.38.171.54:5001/cliente/{id}")
     return[peticion.json()] if peticion.ok else []
+
+
+def getClienteCodigos(codigo):
+    peticion = requests.get(f"http://154.38.171.54:5001/cliente/{codigo}")
+    return[peticion.json()] if peticion.ok else []
+
+
+
+def getTel(telefono):
+     Officecode=[]
+     for val in getAllCliente():
+        if val.get("telefono")==telefono:
+            return[val]
+        
+      
+def getfax(fax):
+     fax=[]
+     for val in getAllCliente():
+        if val.get("fax")==fax:
+            return[val]
+
+#obtener direcciones a partir de direcciones
+def getDireccion1(direccion):
+     linea1=[]
+     for val in getAllCliente():
+        if val.get("linea_direccion1")==direccion:
+            return[val]
+        
+def getDireccion2(direccion):
+     line2=[]
+     for val in getAllCliente():
+        if val.get("linea_direccion2")==direccion:
+            return[val]
+
+
 
 
 

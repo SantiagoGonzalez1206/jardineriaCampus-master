@@ -3,10 +3,13 @@ from tabulate import tabulate
 
 def getAllPago():
     # json-server storage/pago.json -b 5505
-    peticion = requests.get("http://172.16.104.15:5005")
+    peticion = requests.get("http://154.38.171.54:5006/pagos")
     data = peticion.json()
     return data
 
+def getPagoId(id):
+    peticion = requests.get(f"http://154.38.171.54:5006/pagos/{id}")
+    return[peticion.json()] if peticion.ok else []
 
 def getFechaPago():
     clientesPagos= set()
