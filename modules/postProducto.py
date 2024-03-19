@@ -51,6 +51,8 @@ def deleteproducto(id):
 
 
     #json-server storage/producto.json -b 5503
+        
+        
 #    peticion = requests.post("http://172.16.100.142:5503", data = json.dumps(producto, indent =4).encode("UTF-8"))
 #    res=peticion.json()
 #    res["mensaje"] = "Producto Guardado"

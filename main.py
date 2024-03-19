@@ -373,6 +373,8 @@ ___  ___                  ______     _            _             _
         4. Empleado
         5. Pago
         6. Pedido
+        7. Detalle de los pedidos 
+        8. Gama de los productos 
         0. Salir 
 
                """)
