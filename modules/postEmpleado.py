@@ -3,6 +3,7 @@ import requests
 import os
 from tabulate import tabulate
 import modules.getEmpleado as getemp
+import modules.updateEmpleado as upEmp
 
 def postEmpleado():
     empleado = {
@@ -88,6 +89,10 @@ def menu():
     elif(opcion == 2):
         idEmpleado = input(("Ingrese el id del cliente que deseas eliminar: "))
         print(tabulate(deleteempleado(idEmpleado)["body"], headers="keys", tablefmt="github"))
+
+    elif(opcion == 3):
+        
+        upEmp.menu()
 
     elif(opcion==0):
        break

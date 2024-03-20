@@ -86,7 +86,7 @@ def menu():
 
                                  1. Guardar un nuevo producto
                                  2. Eliminar un producto
-                                 3. Actualizar el nombre de un producto
+                                 3. Actualizar los datos de un producto
                                  0. Salir
 """)
 
@@ -100,8 +100,8 @@ def menu():
         print(tabulate(deleteproducto(idProducto)["body"], headers="keys", tablefmt="github"))
     
     elif(opcion == 3):
-        codigoProducto = input(("Ingrese el codigo del producto que deseas actualizar: "))
-        print(tabulate(upPro.updateProductoNombre(codigoProducto), headers="keys", tablefmt="github"))
+        
+        upPro.menu()
 
     elif(opcion==0):
        break

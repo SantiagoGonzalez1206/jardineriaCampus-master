@@ -333,22 +333,20 @@ def menuPedido():
 
       """)
 
-      try:
-         option = int(input("\nSeleccione una de las opciones: "))
 
-         if(option == 1):
+      option = int(input("\nSeleccione una de las opciones: "))
+
+      if(option == 1):
             Reppedido.menu()
-         elif(option == 2):
+      elif(option == 2):
             CRUDpedido.menu()
-         elif(option == 0):
+      elif(option == 0):
             break
-         else:
+      else:
             print("Elija una opcion correcta del 0 al 2")
             time.sleep(3)
 
-      except ValueError: 
-         print("Caracteres incorrectos, elija una opcion del 0 al 2")
-         time.sleep(3)
+
 
 
 
@@ -425,28 +423,26 @@ ___  ___                  ______     _            _             _
         0. Salir 
 
                """)
-      try:
-         option = int(input("\nSeleccione una de las opciones: "))
-         if(option == 1):
+
+      option = int(input("\nSeleccione una de las opciones: "))
+      if(option == 1):
             menuOficina()
-         elif(option == 2):
+      elif(option == 2):
             menuCliente()       
-         elif(option == 3):
+      elif(option == 3):
             menuProducto()
-         elif(option == 4):
+      elif(option == 4):
             menuEmpleado()         
-         elif(option == 5):
+      elif(option == 5):
             menuPago() 
-         elif(option == 6):
+      elif(option == 6):
             menuPedido()
-         elif(option == 0):
+      elif(option == 0):
             break
-         else:
+      else:
             print("Elija algun número disponible del 0 al 6 ")
             time.sleep(3)
-      except ValueError: 
-         print("Caracteres incorrectos, elija una opcion del 0 al 6")
-         time.sleep(3)
+
 
         # https://patorjk.com/software/taag/#p=display&h=2&v=2&f=Slant&t=Menu%20Principal
          

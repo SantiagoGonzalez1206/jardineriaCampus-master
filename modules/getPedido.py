@@ -15,6 +15,14 @@ def getPedidoId(id):
     return[peticion.json()] if peticion.ok else []
 
 
+def getPedidoCodigos2(codigo):
+    peticion = requests.get(f"http://154.38.171.54:5007/pedidos?codigo_pedido={codigo.upper()}")
+    data = peticion.json()
+    if(data)== 0:
+        data=None
+    return data
+
+
 def getEstadoPedido():
     estadosPedido = set()
     for val in getAllPedido():

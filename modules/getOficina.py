@@ -11,6 +11,15 @@ def getOficinaId(id):
     peticion = requests.get(f"http://154.38.171.54:5005/oficinas/{id}")
     return[peticion.json()] if peticion.ok else []
 
+
+def getOficinaCodigos2(codigo):
+    peticion = requests.get(f"http://154.38.171.54:5005/oficinas?codigo_oficina={codigo.upper()}")
+    data = peticion.json()
+    if(data)== 0:
+        data=None
+    return data
+
+
 def getCodigoOfiCiudadName():
     CodigoOfiCiudad = list()
     for val in getAllOficina():

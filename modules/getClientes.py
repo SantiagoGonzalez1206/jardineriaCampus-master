@@ -32,6 +32,13 @@ def getClienteCodigos(codigo):
     peticion = requests.get(f"http://154.38.171.54:5001/cliente/{codigo}")
     return[peticion.json()] if peticion.ok else []
 
+def getClienteCodigos2(codigo):
+    peticion = requests.get(f"http://154.38.171.54:5001/cliente?codigo_cliente={codigo.upper()}")
+    data = peticion.json()
+    if(data)== 0:
+        data=None
+    return data
+
 
 
 def getTel(telefono):

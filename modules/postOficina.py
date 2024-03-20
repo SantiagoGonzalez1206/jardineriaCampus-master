@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 import modules.getOficina as getofi
+import modules.updateOficina as upOfi
 
 def postOficina():
     oficina = {
@@ -66,6 +67,7 @@ def menu():
 
                                  1. Guardar un nuevo dato de oficina
                                  2. Eliminar un dato de oficina
+                                 3. Actualizar datos de oficina
                                  0. Salir
 """)
 
@@ -77,6 +79,10 @@ def menu():
     elif(opcion == 2):
         idOficina = input(("Ingrese el id del cliente que deseas eliminar: "))
         print(tabulate(deleteoficina(idOficina)["body"], headers="keys", tablefmt="github"))
+
+    elif(opcion == 3):
+        
+        upOfi.menu()
 
     elif(opcion==0):
        break

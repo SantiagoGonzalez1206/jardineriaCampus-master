@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 import modules.getPago as getpag
+import modules.updatePago as upPag
 
 
 def postPago():
@@ -64,6 +65,7 @@ def menu():
 
                                  1. Guardar un nuevo registro de pago
                                  2. Eliminar un registro de pago
+                                 3. Actualizar informacion de los pagos
                                  0. Salir
 """)
 
@@ -75,6 +77,10 @@ def menu():
     elif(opcion == 2):
         idPago = input(("Ingrese el id del cliente que deseas eliminar: "))
         print(tabulate(deletepago(idPago)["body"], headers="keys", tablefmt="github"))
+    
+    elif(opcion == 3):
+        
+        upPag.menu()
     
     elif(opcion==0):
        break

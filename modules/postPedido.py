@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 import modules.getPedido as getped
+import modules.updatePedido as upPed
 
 def postPedido():
     pedido = {
@@ -65,6 +66,7 @@ def menu():
 
                                  1. Guardar un nuevo pedido
                                  2. Eliminar un pedido
+                                 3. Actualizar datos de los pedidos
                                  0. Salir
 """)
 
@@ -76,6 +78,10 @@ def menu():
     elif(opcion==2):
         idPedido = input(("Ingrese el id del cliente que deseas eliminar: "))
         print(tabulate(deletepedido(idPedido)["body"], headers="keys", tablefmt="github"))
+
+    elif(opcion == 3):
+        
+        upPed.menu()
 
     elif(opcion==0):
        break
