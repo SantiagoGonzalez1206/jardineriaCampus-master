@@ -4,6 +4,7 @@ import os
 from tabulate import tabulate
 
 import modules.getProducto as getpro
+import modules.updateProducto as upPro
 
 def postProducto():
     producto = {
@@ -85,6 +86,7 @@ def menu():
 
                                  1. Guardar un nuevo producto
                                  2. Eliminar un producto
+                                 3. Actualizar el nombre de un producto
                                  0. Salir
 """)
 
@@ -96,6 +98,10 @@ def menu():
     elif(opcion == 2):
         idProducto = input(("Ingrese el id del producto que deseas eliminar: "))
         print(tabulate(deleteproducto(idProducto)["body"], headers="keys", tablefmt="github"))
+    
+    elif(opcion == 3):
+        codigoProducto = input(("Ingrese el codigo del producto que deseas actualizar: "))
+        print(tabulate(upPro.updateProductoNombre(codigoProducto), headers="keys", tablefmt="github"))
 
     elif(opcion==0):
        break
