@@ -20,6 +20,13 @@ def getPagoCodigos2(codigo):
     return data
 
 
+def getAllIdTransactions(id):
+    transaction=[]
+    for val in getAllPago():
+         if val.get("id_transaccion")==id:
+            return [val]
+
+
 def getFechaPago():
     clientesPagos= set()
     for val in getAllPago():

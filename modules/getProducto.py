@@ -29,6 +29,13 @@ def getProductoCodigos2(codigo):
         data=None
     return data
 
+def getAllCodeByCode(codigo):
+        AllproductsProducts=[]
+        for val in getAllData():
+                if val.get("codigo_producto")==codigo:
+                        return [val]
+
+
 def getAllStocksPriceGama(gama, stock):
     condiciones = []
     for val in getAllData():

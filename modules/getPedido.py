@@ -22,6 +22,13 @@ def getPedidoCodigos2(codigo):
         data=None
     return data
 
+def getCodeByCode(codigo):
+        AllproductsProducts=[]
+        for val in getAllPedido():
+                if val.get("codigo_pedido")==codigo:
+                        return [val]
+
+
 
 def getEstadoPedido():
     estadosPedido = set()

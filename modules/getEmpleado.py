@@ -20,6 +20,17 @@ def getEmpleadoCodigos2(codigo):
         data=None
     return data
 
+def getEmpleadoCodigoCliente(codigo):
+    clientecode=[]
+    for val in getAllEmpleado():
+        if (val.get("codigo_empleado")==codigo):
+            return[val]
+
+def getEmailEmpleado(email):
+    empleadoemail=[]
+    for val in getAllEmpleado():
+        if (val.get("email")==email):
+            return[val]
 
 def getAllEmpleadosName():
     empleadoNames = list()

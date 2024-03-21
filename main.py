@@ -21,7 +21,7 @@ import modules.getProducto as Repproducto
 import modules.postProducto as CRUDproducto
 
 import modules.getGamas as RepGamas
-import modules.postGamaProducto as CRUDgama
+
 
 
 
@@ -347,56 +347,6 @@ def menuPedido():
             time.sleep(3)
 
 
-
-
-
-def menuGamaProducto():
-   while True:
-      os.system("clear")
-      print("""
-            
-
-
-    ____  _                            _     __               __   __  ___                      
-   / __ )(_)__  ____ _   _____  ____  (_)___/ /___     ____ _/ /  /  |/  /__  ____  __  __      
-  / __  / / _ \/ __ \ | / / _ \/ __ \/ / __  / __ \   / __ `/ /  / /|_/ / _ \/ __ \/ / / /      
- / /_/ / /  __/ / / / |/ /  __/ / / / / /_/ / /_/ /  / /_/ / /  / /  / /  __/ / / / /_/ /       
-/_____/_/\___/_/ /_/|___/\___/_/ /_/_/\__,_/\____/__ \__,_/_/  /_/  /_/\___/_/ /_/\__,_/        
-  / ____/___ _____ ___  ____ _   ____/ /__     / __ \_________  ____/ /_  _______/ /_____  _____
- / / __/ __ `/ __ `__ \/ __ `/  / __  / _ \   / /_/ / ___/ __ \/ __  / / / / ___/ __/ __ \/ ___/
-/ /_/ / /_/ / / / / / / /_/ /  / /_/ /  __/  / ____/ /  / /_/ / /_/ / /_/ / /__/ /_/ /_/ (__  ) 
-\____/\__,_/_/ /_/ /_/\__,_/   \__,_/\___/  /_/   /_/   \____/\__,_/\__,_/\___/\__/\____/____/  
-                                                                                                
-                        
-
-
-
-            1. Reportes de la gama de los productos
-            2. Guardar, Actualizar y Eliminar informacion de la gama de los productos
-            0. Regresar al menu principal                                                               
-
-      """)
-
-      try:
-         option = int(input("\nSeleccione una de las opciones: "))
-
-         if(option == 1):
-            RepGamas.menu()
-         elif(option == 2):
-            CRUDgama.menu()
-         elif(option == 0):
-            break
-         else:
-            print("Elija una opcion correcta del 0 al 2")
-            time.sleep(3)
-
-      except ValueError: 
-         print("Caracteres incorrectos, elija una opcion del 0 al 2")
-         time.sleep(3)
-
-
-
-
 if(__name__ == "__main__"):
    while True:
       #os.system("clear")
@@ -418,8 +368,7 @@ ___  ___                  ______     _            _             _
         4. Empleado
         5. Pago
         6. Pedido
-        7. Detalle de los pedidos 
-        8. Gama de los productos 
+        
         0. Salir 
 
                """)

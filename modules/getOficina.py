@@ -19,6 +19,37 @@ def getOficinaCodigos2(codigo):
         data=None
     return data
 
+def getTelFromTel(telefono):
+     Officecode=[]
+     for val in getAllOficina():
+        if val.get("telefono")==telefono:
+            return[val]
+
+
+
+
+#obtener oficinca segun la que se meta por consola
+def getCodeOfficeCode(codigo):
+     Officecode=[]
+     for val in getAllOficina():
+        if val.get("codigo_oficina")==codigo:
+            return[val]
+
+#obtener direcciones a partir de direcciones
+def getDireccion1FromDireccion(direccion):
+     linea1=[]
+     for val in getAllOficina():
+        if val.get("linea_direccion1")==direccion:
+            return[val]
+        
+def getDireccion2FromDireccion(direccion):
+     line2=[]
+     for val in getAllOficina():
+        if val.get("linea_direccion2")==direccion:
+            return[val]
+
+
+
 
 def getCodigoOfiCiudadName():
     CodigoOfiCiudad = list()
