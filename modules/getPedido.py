@@ -22,6 +22,7 @@ def getPedidoCodigos2(codigo):
         data=None
     return data
 
+
 def getCodeByCode(codigo):
         AllproductsProducts=[]
         for val in getAllPedido():

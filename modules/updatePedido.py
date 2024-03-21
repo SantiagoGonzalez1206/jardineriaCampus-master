@@ -13,21 +13,21 @@ def updatePedidoFecha(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido que desea actualizar la fecha del pedido?
+                    ¿Esta es elpedido que desea actualizar la fecha?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-                    pedido[0]["fecha_pedido"] = input("ingrese la nueva fecha del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    pedido[0]["fecha_pedido"] = input("ingrese la nueva fecha esperada del pedido: ")
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
@@ -40,22 +40,22 @@ def updatePedidoFechaEsperada(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido en el que desea actualizar la fecha esperada del pedido?
+                    ¿Esta es el en el que desea actualizar la fecha esperada?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-                    pedido[0]["fecha_esperada"] = input("Ingrese la nueva fecha esperada del pedido")
+                    pedido[0]["fecha_esperada"] = input("ingrese la nueva fecha esperada del pedido")
                     
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
@@ -68,21 +68,21 @@ def updatePedidoFechaEntrega(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido que desea actualizar la fecha de entrega?
+                    ¿Esta es el que desea actualizar la fecha de entrega?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["fecha_entrega"] = input("ingrese la nueva fecha de entrega del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
@@ -96,21 +96,21 @@ def updatePedidoEstado(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido que desea actualizar el estado del pedido?
+                    ¿Esta es el que desea actualizar el estado?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["estado"] = input("ingrese el nuevo estado del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
@@ -123,21 +123,21 @@ def updatePedidoComentario(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido que desea actualizar el comentario?
+                    ¿Esta es el que desea actualizar el comentario?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["comentario"] = input("ingrese el nuevo comentario del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
@@ -150,26 +150,24 @@ def updatePedidoCodigoCliente(codigo):
             if (pedido):
                 print(tabulate(pedido, headers="keys", tablefmt="github"))
                 opc=int(input("""
-                    ¿Este es el pedido que desea actualizar el codigo de cliente?
+                    ¿Esta es el que desea actualizar el codigo del cliente?
                             1. Si
                             2. No
                 """))
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["codigo_cliente"] = int(input("ingrese el nuevo codigo del cliente del pedido: "))
-                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
                 else:
                     codigo = None
             else:
-                print(f"el pedido {codigo} no existe")
+                print(f"el {codigo} no existe")
                 codigo = None      
         else:
             codigo = input("ingrese el codigo del pedido")
-
-
 
 
 
@@ -180,43 +178,47 @@ def menu():
     print("""
 
 
+
     ______    ___ __                _       ____                                _   __           
    / ____/___/ (_) /_____ ______   (_)___  / __/___  _________ ___  ____ ______(_)_/_/ ____      
   / __/ / __  / / __/ __ `/ ___/  / / __ \/ /_/ __ \/ ___/ __ `__ \/ __ `/ ___/ / __ \/ __ \     
  / /___/ /_/ / / /_/ /_/ / /     / / / / / __/ /_/ / /  / / / / / / /_/ / /__/ / /_/ / / / /     
 /_____/\__,_/_/\__/\__,_/_/     /_/_/ /_/_/  \____/_/  /_/ /_/ /_/\__,_/\___/_/\____/_/ /_/      
-  ____/ /__     / /___  _____   ____  ___  ____/ (_)___/ /___  _____                             
- / __  / _ \   / / __ \/ ___/  / __ \/ _ \/ __  / / __  / __ \/ ___/                             
-/ /_/ /  __/  / / /_/ (__  )  / /_/ /  __/ /_/ / / /_/ / /_/ (__  )                              
-\__,_/\___/  /_/\____/____/  / .___/\___/\__,_/_/\__,_/\____/____/                               
-                            /_/                                                                  
-                        
+  ____/ /__     / /___ ______   / __ \___  ____/ (_)___/ /___  _____                             
+ / __  / _ \   / / __ `/ ___/  / /_/ / _ \/ __  / / __  / __ \/ ___/                             
+/ /_/ /  __/  / / /_/ (__  )  / ____/  __/ /_/ / / /_/ / /_/ (__  )                              
+\__,_/\___/  /_/\__,_/____/  /_/    \___/\__,_/_/\__,_/\____/____/                               
+                                                                                                 
+
 
 
                                  1. Fecha del pedido
-                                 2. Fecha esperada
-                                 3. Fecha de entrega
+                                 2. Fecha esperada del pedido
+                                 3. Fecha de entrega del pedido
                                  4. Estado del pedido
                                  5. Comentario del pedido
-                                 6. Codigo del cliente
-
+                                 6. Codigo del cliente del pedido
+                                 
                                  0. Salir
 """)
 
-
+ 
     opcion= int(input("\nSeleccione el dato que quiera editar: "))
     codigopedido = input(("Ingrese el codigo del pedido al que deseas actualizar los datos: "))
     if (opcion == 1):
-        print(tabulate(updatePedidoFecha(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoFecha(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==2):
-        print(tabulate(updatePedidoFechaEsperada(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoFechaEsperada(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==3):
-        print(tabulate(updatePedidoFechaEntrega(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoFechaEntrega(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==4):
-        print(tabulate(updatePedidoEstado(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoEstado(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==5):
-        print(tabulate(updatePedidoComentario(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoComentario(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==6):
-        print(tabulate(updatePedidoCodigoCliente(codigopedido), headers="keys", tablefmt="github"))
+            print(tabulate(updatePedidoCodigoCliente(codigopedido), headers="keys", tablefmt="github"))
     elif (opcion ==0):
-        break    
+            break    
+    else:
+                print("Elija algun número disponible del 0 al 7 ")
+                time.sleep(3)
