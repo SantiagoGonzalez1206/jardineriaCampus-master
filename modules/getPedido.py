@@ -1,4 +1,5 @@
 from tabulate import tabulate 
+import time
 from datetime import datetime, timedelta
 import requests
 
@@ -155,19 +156,22 @@ def menu():
         5. Pedidos entregados en Enero de cualquier año
         0. Salir
 """)
-    
-        opcion= int(input("\nSeleccione una de las opciones: "))
-        if(opcion == 1):
-            print(tabulate(getEstadoPedido(), headers="keys", tablefmt="github"))
-        elif(opcion == 2):
-            print(tabulate(getAllPedidosEntregadosAtrasados(), headers="keys", tablefmt="github"))
-        elif(opcion == 3):
-            print(tabulate(getPedidosDosDias(), headers="keys", tablefmt="github"))
-        elif(opcion == 4):
-            print(tabulate(getRechazos2009(), headers="keys", tablefmt="github"))    
-        elif(opcion == 5):
-            print(tabulate(getEntregadosEnero(), headers="keys", tablefmt="github"))
-        elif(opcion == 0):
-            break
-        else:
-            print("elija una opcion valida")
+        try:
+            opcion= int(input("\nSeleccione una de las opciones: "))
+            if(opcion == 1):
+                print(tabulate(getEstadoPedido(), headers="keys", tablefmt="github"))
+            elif(opcion == 2):
+                print(tabulate(getAllPedidosEntregadosAtrasados(), headers="keys", tablefmt="github"))
+            elif(opcion == 3):
+                print(tabulate(getPedidosDosDias(), headers="keys", tablefmt="github"))
+            elif(opcion == 4):
+                print(tabulate(getRechazos2009(), headers="keys", tablefmt="github"))    
+            elif(opcion == 5):
+                print(tabulate(getEntregadosEnero(), headers="keys", tablefmt="github"))
+            elif(opcion == 0):
+                break
+            else:
+                print("elija una opcion valida")
+        except ValueError: 
+            print("Caracteres incorrectos, elija una opcion del 0 al 5")
+            time.sleep(3)

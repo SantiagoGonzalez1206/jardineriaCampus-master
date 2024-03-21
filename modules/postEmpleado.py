@@ -1,6 +1,7 @@
 import json
 import requests
 import os
+import time
 from tabulate import tabulate
 import modules.getEmpleado as getEmp
 import modules.updateEmpleado as upEmp
@@ -226,22 +227,27 @@ def menu():
 
                                  1. Guardar un nuevo empleado
                                  2. Eliminar algun empleado
+                                 3. Actualizar algun dato de empleado
                                  0. Salir
 """)
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(agregarDatosEmpleados(), headers="keys", tablefmt="github"))
+            input("Presione Enter para continuar... ")
+        elif(opcion == 2):
+            idEmpleado = input(("Ingrese el id del cliente que deseas eliminar: "))
+            print(tabulate(deleteempleado(idEmpleado)["body"], headers="keys", tablefmt="github"))
 
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(agregarDatosEmpleados(), headers="keys", tablefmt="github"))
-        input("Presione Enter para continuar... ")
-    elif(opcion == 2):
-        idEmpleado = input(("Ingrese el id del cliente que deseas eliminar: "))
-        print(tabulate(deleteempleado(idEmpleado)["body"], headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            
+            upEmp.menu()
 
-    elif(opcion == 3):
-        
-        upEmp.menu()
+        elif(opcion==0):
+            break
+        else:
+            print("Elija una opcion correcta del 0 al 3: ")
+    except ValueError:
+        print("Seleccione una opcion valida del 0 al 3")
+        time.sleep(3)
 
-    elif(opcion==0):
-       break
-    else:
-       print("Elija una opcion correcta: ")

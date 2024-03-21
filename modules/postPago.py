@@ -3,6 +3,7 @@ import requests
 import os
 from tabulate import tabulate
 import re
+import time
 
 import modules.getPago as getpag
 import modules.updatePago as upPag
@@ -151,20 +152,25 @@ def menu():
                                  0. Salir
 """)
 
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(agregarDatosPago(), headers="keys", tablefmt="github"))
-        input("Presione Enter para continuar... ")
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(agregarDatosPago(), headers="keys", tablefmt="github"))
+            input("Presione Enter para continuar... ")
 
-    elif(opcion == 2):
-        idPago = input(("Ingrese el id del cliente que deseas eliminar: "))
-        print(tabulate(deletepago(idPago)["body"], headers="keys", tablefmt="github"))
-    
-    elif(opcion == 3):
+        elif(opcion == 2):
+            idPago = input(("Ingrese el id del cliente que deseas eliminar: "))
+            print(tabulate(deletepago(idPago)["body"], headers="keys", tablefmt="github"))
         
-        upPag.menu()
-    
-    elif(opcion==0):
-       break
-    else:
-       print("Elija una opcion correcta: ")
+        elif(opcion == 3):
+            
+            upPag.menu()
+        
+        elif(opcion==0):
+            break
+        else:
+            print("Elija una opcion correcta: ")
+    except ValueError:
+        print("Seleccione una opcion valida del 0 al 3")
+        time.sleep(3)
+

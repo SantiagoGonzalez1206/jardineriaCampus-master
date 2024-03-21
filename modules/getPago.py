@@ -1,4 +1,5 @@
 import requests
+import time
 from tabulate import tabulate 
 
 def getAllPago():
@@ -75,17 +76,20 @@ def menu():
                                  1. Codigo de cliente con algun pago en 2008
                                  2. Todos los pagos hechos en 2008 con Paypal (De mayor a menor)
                                  3. Todas las formas de pago (sin repetirse)
-                                 4. Salir 
+                                 0. Salir 
 """)
-    
-        opcion= int(input("\nSeleccione una de las opciones: "))
-        if(opcion == 1):
-            print(getFechaPago())
-        elif(opcion == 2):
-            print(tabulate(getPagoPaypal(), headers="keys", tablefmt="github"))
-        elif (opcion == 3):
-            print(getFormaDePago())
-        elif (opcion == 4):
-            break
-        else:
-            print("elija una opcion valida")
+        try:
+            opcion= int(input("\nSeleccione una de las opciones: "))
+            if(opcion == 1):
+                print(getFechaPago())
+            elif(opcion == 2):
+                print(tabulate(getPagoPaypal(), headers="keys", tablefmt="github"))
+            elif (opcion == 3):
+                print(getFormaDePago())
+            elif (opcion == 0):
+                break
+            else:
+                print("elija una opcion valida")
+        except ValueError: 
+                print("Caracteres incorrectos, elija una opcion del 0 al 3")
+                time.sleep(3)

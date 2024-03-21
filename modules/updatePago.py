@@ -157,8 +157,8 @@ def menu():
         elif (opcion ==0):
             break    
         else:
-                print("Elija algun número disponible del 0 al 8 ")
+                print("Elija algun número disponible del 0 al 4 ")
                 time.sleep(3)
     except ValueError: 
-         print("Caracteres incorrectos, elija una opcion del 0 al 8")
+         print("Caracteres incorrectos, elija una opcion del 0 al 4")
          time.sleep(3)

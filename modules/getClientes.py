@@ -1,4 +1,5 @@
 from tabulate import tabulate 
+import time
 import requests
 
 
@@ -155,14 +156,18 @@ def menu():
   while True:  
     print("""
 
-______                      _             _        _             _____ _ _            _            
-| ___ \                    | |           | |      | |           /  __ \ (_)          | |           
-| |_/ /___ _ __   ___  _ __| |_ ___    __| | ___  | | ___  ___  | /  \/ |_  ___ _ __ | |_ ___  ___ 
-|    // _ \ '_ \ / _ \| '__| __/ _ \  / _` |/ _ \ | |/ _ \/ __| | |   | | |/ _ \ '_ \| __/ _ \/ __|
-| |\ \  __/ |_) | (_) | |  | ||  __/ | (_| |  __/ | | (_) \__ \ | \__/\ | |  __/ | | | ||  __/\__ \
-\_| \_\___| .__/ \___/|_|   \__\___|  \__,_|\___| |_|\___/|___/  \____/_|_|\___|_| |_|\__\___||___/
-          | |                                                                                      
-          |_|                                                                                      
+
+    ____                        __                   __        __          
+   / __ \___  ____  ____  _____/ /____  _____   ____/ /__     / /___  _____
+  / /_/ / _ \/ __ \/ __ \/ ___/ __/ _ \/ ___/  / __  / _ \   / / __ \/ ___/
+ / _, _/  __/ /_/ / /_/ / /  / /_/  __(__  )  / /_/ /  __/  / / /_/ (__  ) 
+/_/ |_|\___/ .___/\____/_/   \__/\___/____/   \__,_/\___/  /_/\____/____/  
+   _______/_/           __                                                 
+  / ____/ (_)__  ____  / /____  _____                                      
+ / /   / / / _ \/ __ \/ __/ _ \/ ___/                                      
+/ /___/ / /  __/ / / / /_/  __(__  )                                       
+\____/_/_/\___/_/ /_/\__/\___/____/                                        
+                                                                           
 
 
              1. Obtener todos los clientes de España
@@ -170,22 +175,26 @@ ______                      _             _        _             _____ _ _      
              3. Obtener nombre de cada cliente y nombre y apellido de su representante de ventas
              4. Obtener el nombre de los clientes que hayan realizado pagos y el nombre de sus representantes de ventas
              5. Obtener el nombre de los clientes que NO hayan realizado pagos y el nombre de sus representantes de ventas
-             6. Salir
+             0. Salir
 """)
-    
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(getNombreClientesEspaña(), headers="keys", tablefmt="github"))
-    elif(opcion == 2):
-        print(tabulate(getClienteCiudadMadrid1130(), headers="keys", tablefmt="github"))
-    elif(opcion == 3):
-        print(tabulate(getClienteRepresentanteVenta(), headers="keys", tablefmt="github"))
-    elif(opcion == 4):
-        print(tabulate(getclientePagos(), headers="keys", tablefmt="github"))
-    elif(opcion == 5):
-        print(tabulate(getClienteNoPagos(), headers="keys", tablefmt="github"))
-    elif(opcion == 6):
-       break
-    else:
-        print("elija una opcion valida ")
-    
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(getNombreClientesEspaña(), headers="keys", tablefmt="github"))
+        elif(opcion == 2):
+            print(tabulate(getClienteCiudadMadrid1130(), headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            print(tabulate(getClienteRepresentanteVenta(), headers="keys", tablefmt="github"))
+        elif(opcion == 4):
+            print(tabulate(getclientePagos(), headers="keys", tablefmt="github"))
+        elif(opcion == 5):
+            print(tabulate(getClienteNoPagos(), headers="keys", tablefmt="github"))
+        elif(opcion == 0):
+            break
+        else:
+            print("elija una opcion valida ")
+    except ValueError: 
+            print("Caracteres incorrectos, elija una opcion del 0 al 5")
+            time.sleep(3)
+#    except KeyboardInterrupt:
+#        menu()

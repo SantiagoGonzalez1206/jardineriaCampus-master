@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 import os
 import re
 from tabulate import tabulate
@@ -182,21 +183,24 @@ def menu():
                                  3. Actualizar datos de los pedidos
                                  0. Salir
 """)
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(agregarDatosPedidos(), headers="keys", tablefmt="github"))
+            input("Presione Enter para continuar... ")
 
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(agregarDatosPedidos(), headers="keys", tablefmt="github"))
-        input("Presione Enter para continuar... ")
+        elif(opcion==2):
+            idPedido = input(("Ingrese el id del cliente que deseas eliminar: "))
+            print(tabulate(deletepedido(idPedido)["body"], headers="keys", tablefmt="github"))
 
-    elif(opcion==2):
-        idPedido = input(("Ingrese el id del cliente que deseas eliminar: "))
-        print(tabulate(deletepedido(idPedido)["body"], headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            
+            upPed.menu()
 
-    elif(opcion == 3):
-        
-        upPed.menu()
-
-    elif(opcion==0):
-       break
-    else:
-       print("Elija una opcion correcta: ")
+        elif(opcion==0):
+            break
+        else:
+            print("Elija una opcion correcta: ")
+    except ValueError:
+            print("Seleccione una opcion valida del 0 al 3")
+            time.sleep(3)

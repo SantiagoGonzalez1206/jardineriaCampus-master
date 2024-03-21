@@ -1,5 +1,6 @@
 import os
 from tabulate import tabulate
+import time
 import requests
 import math
 
@@ -39,7 +40,8 @@ def getAllCodeByCode(codigo):
 def getAllStocksPriceGama(gama, stock):
     condiciones = []
     for val in getAllData():
-        if(val.get("gama") == gama and val.get("cantidad_en_stock") >= stock):
+        if val.get("gama") == gama:
+           if val.get("cantidad_en_stock") >= stock:
             condiciones.append(val)
     def price(val):
         return val.get("precio_venta")    
@@ -86,4 +88,5 @@ def menu():
                 print("elija una opcion valida")
 
         except ValueError: 
-         print("Caracteres incorrectos, elija una opcion del 0 al 1")
+            print("Caracteres incorrectos, elija una opcion del 0 al 1")
+            time.sleep(3)

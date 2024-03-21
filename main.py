@@ -362,36 +362,38 @@ ___  ___                  ______     _            _             _
                                                    | |            
                                                    |_|            
 
-        1. Oficina
-        2. Cliente
-        3. Producto
-        4. Empleado
-        5. Pago
-        6. Pedido
+        1. Cliente
+        2. Empleados
+        3. Oficina
+        4. Pago
+        5. Pedido
+        6. Producto
         
         0. Salir 
 
                """)
-
-      option = int(input("\nSeleccione una de las opciones: "))
-      if(option == 1):
-            menuOficina()
-      elif(option == 2):
-            menuCliente()       
-      elif(option == 3):
-            menuProducto()
-      elif(option == 4):
-            menuEmpleado()         
-      elif(option == 5):
-            menuPago() 
-      elif(option == 6):
-            menuPedido()
-      elif(option == 0):
-            break
-      else:
-            print("Elija algun número disponible del 0 al 6 ")
-            time.sleep(3)
-
+      try:
+         option = int(input("\nSeleccione una de las opciones: "))
+         if(option == 1):
+               menuCliente()
+         elif(option == 2):
+               menuEmpleado()       
+         elif(option == 3):
+               menuOficina()
+         elif(option == 4):
+               menuPago()         
+         elif(option == 5):
+               menuPedido()
+         elif(option == 6):
+               menuProducto()
+         elif(option == 0):
+               break
+         else:
+               print("Elija algun número disponible del 0 al 6 ")
+               time.sleep(3)
+      except ValueError:
+          print("Seleccione una opcion valida del 0 al 6")
+          time.sleep(3)
 
         # https://patorjk.com/software/taag/#p=display&h=2&v=2&f=Slant&t=Menu%20Principal
          

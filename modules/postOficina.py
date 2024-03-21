@@ -2,6 +2,7 @@ import json
 import requests
 import os
 import re
+import time
 from tabulate import tabulate
 
 import modules.getOficina as getOfi
@@ -206,20 +207,24 @@ def menu():
                                  0. Salir
 """)
 
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(agregarDatosOficina(), headers="keys", tablefmt="github"))
-        input("Presione Enter para continuar... ")
-        
-    elif(opcion == 2):
-        idOficina = input(("Ingrese el id del cliente que deseas eliminar: "))
-        print(tabulate(deleteoficina(idOficina)["body"], headers="keys", tablefmt="github"))
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(agregarDatosOficina(), headers="keys", tablefmt="github"))
+            input("Presione Enter para continuar... ")
+            
+        elif(opcion == 2):
+            idOficina = input(("Ingrese el id del cliente que deseas eliminar: "))
+            print(tabulate(deleteoficina(idOficina)["body"], headers="keys", tablefmt="github"))
 
-    elif(opcion == 3):
-        
-        upOfi.menu()
+        elif(opcion == 3):
+            
+            upOfi.menu()
 
-    elif(opcion==0):
-       break
-    else:
-       print("Elija una opcion correcta: ")
+        elif(opcion==0):
+            break
+        else:
+            print("Elija una opcion correcta del 0 al 3: ")
+    except ValueError:
+        print("Seleccione una opcion valida del 0 al 3")
+        time.sleep(3)

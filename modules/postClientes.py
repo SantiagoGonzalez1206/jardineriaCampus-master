@@ -3,6 +3,7 @@ import requests
 import os
 from tabulate import tabulate 
 import re
+import time
 
 import modules.getClientes as getcli
 import modules.updateClientes as upCli
@@ -299,21 +300,25 @@ def menu():
                                  3. Actualizar datos de clientes
                                  0. Salir
 """)
+    try:
+        opcion= int(input("\nSeleccione una de las opciones: "))
+        if(opcion == 1):
+            print(tabulate(agregarDatosDeClientes(), headers="keys", tablefmt="github"))
+            input("Presione alguna tecla para continuar... ")
 
-    opcion= int(input("\nSeleccione una de las opciones: "))
-    if(opcion == 1):
-        print(tabulate(agregarDatosDeClientes(), headers="keys", tablefmt="github"))
-        input("Presione alguna tecla para continuar... ")
+        elif(opcion == 2):
+            idCliente = input(("Ingrese el id del cliente que deseas eliminar: "))
+            print(tabulate(deletecliente(idCliente)["body"], headers="keys", tablefmt="github"))
 
-    elif(opcion == 2):
-        idCliente = input(("Ingrese el id del cliente que deseas eliminar: "))
-        print(tabulate(deletecliente(idCliente)["body"], headers="keys", tablefmt="github"))
+        elif(opcion == 3):
+            
+            upCli.menu()
 
-    elif(opcion == 3):
-        
-        upCli.menu()
+        elif(opcion==0):
+            break
+        else:
+            print("Elija una opcion correcta: ")
+    except ValueError:
+        print("Seleccione una opcion valida del 0 al 3")
+        time.sleep(3)
 
-    elif(opcion==0):
-       break
-    else:
-       print("Elija una opcion correcta: ")

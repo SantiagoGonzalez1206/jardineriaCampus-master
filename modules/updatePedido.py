@@ -20,7 +20,7 @@ def updatePedidoFecha(codigo):
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["fecha_pedido"] = input("ingrese la nueva fecha esperada del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
@@ -48,7 +48,7 @@ def updatePedidoFechaEsperada(codigo):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["fecha_esperada"] = input("ingrese la nueva fecha esperada del pedido")
                     
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
@@ -75,7 +75,7 @@ def updatePedidoFechaEntrega(codigo):
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["fecha_entrega"] = input("ingrese la nueva fecha de entrega del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
@@ -103,8 +103,9 @@ def updatePedidoEstado(codigo):
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["estado"] = input("ingrese el nuevo estado del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
+                    print(data)
                     return [data]
 
                 else:
@@ -130,7 +131,7 @@ def updatePedidoComentario(codigo):
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["comentario"] = input("ingrese el nuevo comentario del pedido: ")
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
@@ -157,7 +158,7 @@ def updatePedidoCodigoCliente(codigo):
                 if(opc):
                     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
                     pedido[0]["codigo_cliente"] = int(input("ingrese el nuevo codigo del cliente del pedido: "))
-                    peticion = requests.put(f'http://154.38.171.54:5005/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
+                    peticion = requests.put(f'http://154.38.171.54:5007/pedidos/{pedido[0].get("id")}', headers= headers, data= json.dumps(pedido[0]))
                     data = peticion.json()
                     return [data]
 
@@ -174,7 +175,7 @@ def updatePedidoCodigoCliente(codigo):
 
 def menu():
   while True:
-    os.system("clear")
+    #os.system("clear")
     print("""
 
 
@@ -202,23 +203,26 @@ def menu():
                                  0. Salir
 """)
 
- 
-    opcion= int(input("\nSeleccione el dato que quiera editar: "))
-    codigopedido = input(("Ingrese el codigo del pedido al que deseas actualizar los datos: "))
-    if (opcion == 1):
-            print(tabulate(updatePedidoFecha(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==2):
-            print(tabulate(updatePedidoFechaEsperada(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==3):
-            print(tabulate(updatePedidoFechaEntrega(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==4):
-            print(tabulate(updatePedidoEstado(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==5):
-            print(tabulate(updatePedidoComentario(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==6):
-            print(tabulate(updatePedidoCodigoCliente(codigopedido), headers="keys", tablefmt="github"))
-    elif (opcion ==0):
-            break    
-    else:
-                print("Elija algun número disponible del 0 al 7 ")
-                time.sleep(3)
+    try:
+        opcion= int(input("\nSeleccione el dato que quiera editar: "))
+        codigopedido = input(("Ingrese el codigo del pedido al que deseas actualizar los datos: "))
+        if (opcion == 1):
+                print(tabulate(updatePedidoFecha(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==2):
+                print(tabulate(updatePedidoFechaEsperada(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==3):
+                print(tabulate(updatePedidoFechaEntrega(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==4):
+                print(tabulate(updatePedidoEstado(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==5):
+                print(tabulate(updatePedidoComentario(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==6):
+                print(tabulate(updatePedidoCodigoCliente(codigopedido), headers="keys", tablefmt="github"))
+        elif (opcion ==0):
+                break    
+        else:
+                    print("Elija algun número disponible del 0 al 6 ")
+                    time.sleep(3)
+    except ValueError:
+        print("Seleccione una opcion valida del 0 al 6")
+        time.sleep(3)

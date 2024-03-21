@@ -1,4 +1,5 @@
 from tabulate import tabulate
+import time
 import requests
 
 
@@ -152,17 +153,20 @@ def menu():
                                  1. Nombre, apellido y email de los empleados con codigo de jefe 7
                                  2. Puesto, nombre, apellido y email del jefe de la empresa
                                  3. Nombre, apellidos y puesto de aquellos que no son representantes de ventas
-                                 4. Salir
+                                 0. Salir
 """)
-    
-        opcion= int(input("\nSeleccione una de las opciones: "))
-        if(opcion == 1):
-            print(tabulate(getNombreApellidoEmailJefe(), headers="keys", tablefmt="github"))
-        elif(opcion == 2):
-            print(tabulate(getAllJefesCode(), headers="keys", tablefmt="github"))
-        elif(opcion == 3):
-            print(tabulate(getEmpleadosPuesto(), headers="keys", tablefmt="github"))
-        elif(opcion == 4):
-            break
-        else:
-            print("elija una opcion valida")
+        try:
+            opcion= int(input("\nSeleccione una de las opciones: "))
+            if(opcion == 1):
+                print(tabulate(getNombreApellidoEmailJefe(), headers="keys", tablefmt="github"))
+            elif(opcion == 2):
+                print(tabulate(getAllJefesCode(), headers="keys", tablefmt="github"))
+            elif(opcion == 3):
+                print(tabulate(getEmpleadosPuesto(), headers="keys", tablefmt="github"))
+            elif(opcion == 0):
+                break
+            else:
+                print("elija una opcion valida")
+        except ValueError: 
+                print("Caracteres incorrectos, elija una opcion del 0 al 3")
+                time.sleep(3)

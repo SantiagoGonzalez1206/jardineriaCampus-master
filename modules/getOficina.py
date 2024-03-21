@@ -1,4 +1,5 @@
 from tabulate import tabulate 
+import time
 import requests
 
 def getAllOficina():
@@ -87,15 +88,18 @@ def menu():
 
                                  1. Codigo de oficina y ciudad donde hay oficinas
                                  2. Ciudad y telefono de las oficinas de España
-                                 3. Salir
+                                 0. Salir
 """)
-    
-        opcion= int(input("\nSeleccione una de las opciones: "))
-        if(opcion == 1):
-            print(tabulate(getCodigoOfiCiudadName(), headers="keys", tablefmt="github"))
-        elif(opcion == 2):
-            print(tabulate(getCiudadTelefonoEspaña(), headers="keys", tablefmt="github"))
-        elif(opcion == 3):
-            break
-        else:
-            print("elija una opcion valida")
+        try:
+            opcion= int(input("\nSeleccione una de las opciones: "))
+            if(opcion == 1):
+                print(tabulate(getCodigoOfiCiudadName(), headers="keys", tablefmt="github"))
+            elif(opcion == 2):
+                print(tabulate(getCiudadTelefonoEspaña(), headers="keys", tablefmt="github"))
+            elif(opcion == 0):
+                break
+            else:
+                print("elija una opcion valida")
+        except ValueError: 
+                print("Caracteres incorrectos, elija una opcion del 0 al 2")
+                time.sleep(3)
